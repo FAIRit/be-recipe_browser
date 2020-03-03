@@ -26,7 +26,6 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        //wywoła się raz po całej pewnej metodzie inicjalizacji
 
         createRoleIfNotExist("ADMIN");
         createRoleIfNotExist("USER");
