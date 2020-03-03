@@ -13,13 +13,14 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-
     private AppUserRepository appUserRepository;
     private BCryptPasswordEncoder passwordEncoder;
     private UserRoleService userRoleService;
 
     @Autowired
-    public UserServiceImpl(AppUserRepository appUserRepository, BCryptPasswordEncoder passwordEncoder, UserRoleService userRoleService) {
+    public UserServiceImpl(AppUserRepository appUserRepository,
+                           BCryptPasswordEncoder passwordEncoder,
+                           UserRoleService userRoleService) {
         this.appUserRepository = appUserRepository;
         this.passwordEncoder = passwordEncoder;
         this.userRoleService = userRoleService;
