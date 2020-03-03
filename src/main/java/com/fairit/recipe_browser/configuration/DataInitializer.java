@@ -39,7 +39,6 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
             AppUser appUser = new AppUser();
             appUser.setEmail(username);
             appUser.setPassword(passwordEncoder.encode(password));
-
             appUser.setRoles((new HashSet<>(findRoles(roles))));
 
             appUserRepository.save(appUser);
