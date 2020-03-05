@@ -5,6 +5,7 @@ import com.fairit.recipe_browser.model.UserRole;
 import com.fairit.recipe_browser.repository.AppUserRepository;
 import com.fairit.recipe_browser.repository.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,7 +29,6 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-
         createRoleIfNotExist("ADMIN");
         createRoleIfNotExist("USER");
 
