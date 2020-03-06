@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:include="templates :: headers"></th:block>
+    <title>Recipe browser</title>
+</head>
+<body>
+<th:block th:include="templates :: navigator_bar"></th:block>
+<div class="content-container">
+    <h1>Recipe search</h1>
+    <div class="row col-md-12 bordered">
+        <form class="row col-md-12" th:action="@{/search/recipes}" method="get">
+            <div class="offset-2 col-2">Search</div>
+            <div class="col-2">
+                <input class="form-control" type="text" name="q">
+            </div>
+            <div class="col-2">
+                <button class="form-control btn btn-primary" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+    <h1 th:if="${recipes != null}">Recipe list</h1>
+    <div th:if="${recipes != null}" class="row col-md-12">
+        <div class="row col-md-12 list-header-row">
+            <div class="col-3">title</div>
+            <div class="col-3">readyInMinutes</div>
+            <div class="col-3">servings</div>
+
+        </div>
+        <div th:each="recipe : ${recipes.getResults()}" class="row col-md-12 list-data-row">
+            <div class="col-3" th:text="${recipe.getTitle().toString()}"></div>
+            <div class="col-3" th:text="${recipe.getReadyInMinutes().toString()}"></div>
+            <div class="col-3" th:text="${recipe.getServings().toString()}"></div>
+
+        </div>
+        <div class="row col-md-12 info-row">
+            <div class="col-3">Total results:</div>
+            <div class="col-3" th:text="${recipes.getTotalResults()}"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
