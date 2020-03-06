@@ -20,14 +20,14 @@ public class SpoonacularServiceApiCalls {
     @Autowired
     private HttpConfiguration httpConfig;
 
-    @Value("${api.spoonacular.com}")
-    private String spoonacularApiAddress;
+//    @Value("${api.spoonacular.com}")
+//    private String spoonacularApiAddress;
 
-    @Autowired
-    public SpoonacularServiceApiCalls(final RestTemplate restTemplate, final HttpConfiguration httpConfig) {
-        this.restTemplate = restTemplate;
-        this.httpConfig = httpConfig;
-    }
+//    @Autowired
+//    public SpoonacularServiceApiCalls(final RestTemplate restTemplate, final HttpConfiguration httpConfig) {
+//        this.restTemplate = restTemplate;
+//        this.httpConfig = httpConfig;
+//    }
 
 ///////
 

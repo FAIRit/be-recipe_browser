@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 public class RecipeResults {
 
-    private List<Recipe> recipes;
+    private List<Recipe> results;
     private String baseUri;
     private Integer offset;
     private Integer number;

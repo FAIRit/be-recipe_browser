@@ -12,15 +12,17 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Recipe {
 
-
+    @Id
     private Long id;
+
     private String title;
     private Integer readyInMinutes;
     private Integer servings;
     private String image;
-    private List<String> imageUrls;
+//    private List<String> imageUrls;
 
 
 }
