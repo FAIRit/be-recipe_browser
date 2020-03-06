@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RecipeResult {
+public class RecipeResults {
 
     private List<Recipe> recipes;
     private String baseUri;

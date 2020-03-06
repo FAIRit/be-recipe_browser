@@ -1,6 +1,6 @@
 package com.fairit.recipe_browser.configuration;
 
-import com.fairit.recipe_browser.service.LoginService;
+import com.fairit.recipe_browser.service.User.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
