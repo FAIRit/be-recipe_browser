@@ -18,6 +18,6 @@ public class RecipeResults {
     private Integer totalResults;
     private Integer processingTimeMs;
     private Long expires;
-    private Integer isStale;
+    private boolean isStale;
 
 }

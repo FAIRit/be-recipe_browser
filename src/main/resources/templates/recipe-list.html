@@ -8,9 +8,9 @@
 <body>
 <th:block th:include="templates :: navigator_bar"></th:block>
 <div class="content-container">
-    <h1>Recipe search</h1>
+    <h2>Recipe search</h2>
     <div class="row col-md-12 bordered">
-        <form class="row col-md-12" th:action="@{/search/recipes}" method="get">
+        <form class="row col-md-12" th:action="@{/recipes/search/}" th:method="get">
             <div class="offset-2 col-2">Search</div>
             <div class="col-2">
                 <input class="form-control" type="text" name="q">
@@ -20,25 +20,32 @@
             </div>
         </form>
     </div>
-    <h1 th:if="${recipes != null}">Recipe list</h1>
-    <div th:if="${recipes != null}" class="row col-md-12">
-        <div class="row col-md-12 list-header-row">
-            <div class="col-3">title</div>
-            <div class="col-3">readyInMinutes</div>
-            <div class="col-3">servings</div>
+    <h2 th:if="${recipes != null}">Recipe list</h2>
+    <div class="card shadow-sm p-1 bg-white rounded mb-3">
+        <div th:if="${recipes != null}" class="row col-md-12">
+            <div class="row col-md-12 list-header-row">
+                <div class="col-3">Title</div>
+                <div class="col-3">Ready in minutes</div>
+                <div class="col-3">Servings</div>
+                <div><!--Buttons--></div>
 
+            </div>
+            <div th:each="recipe : ${recipes.getResults()}" class="row col-md-12 list-data-row">
+                <div class="col-3" th:text="${recipe.getTitle().toString()}"></div>
+                <div class="col-3" th:text="${recipe.getReadyInMinutes().toString()}"></div>
+                <div class="col-3" th:text="${recipe.getServings().toString()}"></div>
+                <!--<div class="col-3" sec:authorize="hasRole('USER')" th:href="@{''+}">-->
+                <!--<button class="form-control btn btn-primary" type="submit">Add to favourites</button>-->
+                <!--</div>-->
+            </div>
+            <div class="row col-md-12 info-row">
+                <div class="col-3">Total results:</div>
+                <div class="col-3" th:text="${recipes.getTotalResults()}"></div>
+            </div>
         </div>
-        <div th:each="recipe : ${recipes.getResults()}" class="row col-md-12 list-data-row">
-            <div class="col-3" th:text="${recipe.getTitle().toString()}"></div>
-            <div class="col-3" th:text="${recipe.getReadyInMinutes().toString()}"></div>
-            <div class="col-3" th:text="${recipe.getServings().toString()}"></div>
 
-        </div>
-        <div class="row col-md-12 info-row">
-            <div class="col-3">Total results:</div>
-            <div class="col-3" th:text="${recipes.getTotalResults()}"></div>
-        </div>
     </div>
+
 </div>
 </body>
 </html>

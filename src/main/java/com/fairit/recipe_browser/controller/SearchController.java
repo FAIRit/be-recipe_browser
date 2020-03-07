@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping(path = "/search/")
+@RequestMapping(path = "/recipes/")
 @AllArgsConstructor
 public class SearchController {
     private final SearchRecipes searchRecipes;
 
-    @GetMapping(path = "/recipes")
+    @GetMapping(path = "/search/")
     public String searchRecipes(Model model,
                                @RequestParam(name = "q", required = false) String phrase) {
         if (phrase != null && !phrase.isEmpty()) {

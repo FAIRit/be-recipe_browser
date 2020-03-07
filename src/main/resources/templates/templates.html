@@ -18,8 +18,8 @@
             <a class="p-2 text-dark" th:href="@{/}">Home</a>
 
             <a class="btn btn-outline-primary align-self-end" sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a>
-            <a class="btn btn-outline-primary" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
-            <a class="btn btn-outline-primary" sec:authorize="!isAuthenticated()"
+            <a class="btn btn-outline-primary " sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+            <a class="btn btn-outline-primary " sec:authorize="!isAuthenticated()"
                th:href="@{/user/register}">Register</a>
 
         </nav>

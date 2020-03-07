@@ -20,18 +20,6 @@ public class SpoonacularServiceApiCalls {
     @Autowired
     private HttpConfiguration httpConfig;
 
-//    @Value("${api.spoonacular.com}")
-//    private String spoonacularApiAddress;
-
-//    @Autowired
-//    public SpoonacularServiceApiCalls(final RestTemplate restTemplate, final HttpConfiguration httpConfig) {
-//        this.restTemplate = restTemplate;
-//        this.httpConfig = httpConfig;
-//    }
-
-///////
-
-
     public ResponseEntity<RecipeResults> searchRecipe(String recipe) {
         String composedUrl = "https://api.spoonacular.com/recipes/search";
         log.info("Composed url: " + composedUrl);
@@ -42,8 +30,7 @@ public class SpoonacularServiceApiCalls {
     }
 
     private String recipeSearch(String recipe) {
-        return "?query=" + recipe + "&number=5";
+        return "?query=" + recipe + "&number=5&apiKey=" + "17cc8ec769ef40cea70ed0456d3d851b";
     }
 }
-
 

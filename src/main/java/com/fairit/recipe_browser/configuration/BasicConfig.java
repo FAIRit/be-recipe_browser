@@ -11,13 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class BasicConfig implements WebMvcConfigurer {
-    @Value("${myDefaultApiKey}")
-    private String apiKey;
 
-    @Bean
-    public String getApiKey(){
-        return apiKey;
-    }
 
     @Bean
     public RestTemplate getRestTemplate() {
