@@ -4,8 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import java.util.List;
 
 
 @Data
@@ -21,7 +24,10 @@ public class Recipe {
     private Integer readyInMinutes;
     private Integer servings;
     private String image;
-//    private List<String> imageUrls;
+
+    @Lob
+    @Column(nullable = true)
+    private List<String> imageUrls;
 
 
 }

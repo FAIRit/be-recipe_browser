@@ -15,6 +15,5 @@ public class SearchRecipes {
         ResponseEntity<RecipeResults> searchRecipeResults = apiCalls.searchRecipe(recipe);
 
         return searchRecipeResults.getBody();
-
     }
 }
