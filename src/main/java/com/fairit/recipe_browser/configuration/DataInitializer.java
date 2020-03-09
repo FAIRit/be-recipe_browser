@@ -5,7 +5,6 @@ import com.fairit.recipe_browser.model.UserRole;
 import com.fairit.recipe_browser.repository.AppUserRepository;
 import com.fairit.recipe_browser.repository.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,11 +32,11 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
         createRoleIfNotExist("USER");
 
         createUserWithRoleIfNotExist("admin", "admin", "ADMIN", "USER");
-        createUserWithRoleIfNotExist("user","user", "USER");
+        createUserWithRoleIfNotExist("user", "user", "USER");
     }
 
-    private void createUserWithRoleIfNotExist(String username, String password, String... roles){
-        if(!appUserRepository.existsByEmail(username)){
+    private void createUserWithRoleIfNotExist(String username, String password, String... roles) {
+        if (!appUserRepository.existsByEmail(username)) {
             AppUser appUser = new AppUser();
             appUser.setEmail(username);
             appUser.setPassword(passwordEncoder.encode(password));
@@ -50,14 +49,14 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
     private List<UserRole> findRoles(String[] roles) {
         List<UserRole> userRoles = new ArrayList<>();
 
-        for (String role : roles){
+        for (String role : roles) {
             userRoles.add((userRoleRepository.findByName(role)));
         }
         return userRoles;
     }
 
     private void createRoleIfNotExist(String roleName) {
-        if(!userRoleRepository.existsByName(roleName)){
+        if (!userRoleRepository.existsByName(roleName)) {
             UserRole role = new UserRole();
             role.setName(roleName);
 

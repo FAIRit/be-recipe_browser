@@ -1,12 +1,10 @@
 package com.fairit.recipe_browser.service;
 
-import com.fairit.recipe_browser.configuration.HttpConfiguration;
 import com.fairit.recipe_browser.model.Ingredients;
-import com.fairit.recipe_browser.model.Recipe;
 import com.fairit.recipe_browser.model.RecipeResults;
 import com.fairit.recipe_browser.model.RecipesWithDefinedIngredients;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,38 +12,43 @@ import org.springframework.web.client.RestTemplate;
 
 @Slf4j
 @Service
+@AllArgsConstructor
 public class SpoonacularServiceApiCalls {
+    private final static String SEARCH_URL = "https://api.spoonacular.com/recipes/search";
+    private final static String SEARCH_BY_INGREDIENTS_URL = "https://api.spoonacular.com/recipes/findByIngredients";
 
-    @Autowired
-    private RestTemplate restTemplate;
-
-    @Autowired
-    private HttpConfiguration httpConfig;
+    private final RestTemplate restTemplate;
+    private final RecipeUrlCreator recipeUrlCreator;
 
     public ResponseEntity<RecipeResults> searchRecipe(String recipe) {
-        String composedUrl = "https://api.spoonacular.com/recipes/search";
-        log.info("Composed url: " + composedUrl);
-        ResponseEntity<RecipeResults> resp = restTemplate.exchange(composedUrl + recipeSearch(recipe), HttpMethod.GET, httpConfig.getHttpEntity(), RecipeResults.class);
+        log.info("Composed url: " + SEARCH_URL);
+        ResponseEntity<RecipeResults> resp = restTemplate.exchange(
+                recipeUrlCreator.createURLWithKey(SEARCH_URL + recipeSearch(recipe)),
+                HttpMethod.GET,
+                null,
+                RecipeResults.class);
 
         log.info(": " + resp.getBody());
         return resp;
     }
 
     private String recipeSearch(String recipe) {
-        return "?query=" + recipe + "&number=5&apiKey=" + "17cc8ec769ef40cea70ed0456d3d851b";
+        return "?query=" + recipe + "&number=5";
     }
 
-    public ResponseEntity<RecipesWithDefinedIngredients> searchRecipeWithIngredients (Ingredients ingredients){
-        String composedUrl = "https://api.spoonacular.com/recipes/findByIngredients";
-        log.info("Composed url: " + composedUrl);
-        ResponseEntity<RecipesWithDefinedIngredients> resp = restTemplate.exchange(composedUrl + searchRecipeWithIngredients(ingredients), HttpMethod.GET, httpConfig.getHttpEntity(), RecipesWithDefinedIngredients.class);
+    public ResponseEntity<RecipesWithDefinedIngredients> searchRecipeWithIngredients(Ingredients ingredients) {
+        log.info("Composed url: " + SEARCH_BY_INGREDIENTS_URL);
+        ResponseEntity<RecipesWithDefinedIngredients> resp = restTemplate.exchange(
+                recipeUrlCreator.createURLWithKey(SEARCH_BY_INGREDIENTS_URL + searchRecipeWithIngredients(ingredients.compose())),
+                HttpMethod.GET, null,
+                RecipesWithDefinedIngredients.class);
 
         log.info(": " + resp.getBody());
         return resp;
     }
 
-    private String searchRecipeWithIngredients (String  ingredients){
-        return "?ingredients=" + ingredients + "&number=5&apiKey=" + "17cc8ec769ef40cea70ed0456d3d851b";
+    private String searchRecipeWithIngredients(String ingredients) {
+        return "?ingredients=" + ingredients + "&number=5";
     }
 }
 
