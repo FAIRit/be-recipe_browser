@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:include="templates :: headers"></th:block>
+    <title>Recipe browser</title>
+</head>
+<body>
+<th:block th:include="templates :: navigator_bar"></th:block>
+<div class="container main-window">
+    <div class="row colored-row">
+        <div class="col-12">
+            <h2>User list</h2>
+        </div>
+    </div>
+    <div class="card shadow-sm p-1 bg-white rounded mb-3">
+        <div class="list-group list-group-flush">
+            <div class="row m-table-header m-table-element p-1 m-table-row mb-12">
+                <div class="col-1">Id</div>
+                <div class="col-2">Email</div>
+                <div class="col-6">Roles</div>
+                <div class="col-3">Actions</div>
+            </div>
+            <th:block th:each="user : ${userList}">
+                <div class="row m-table-element p-1 m-table-row mb-3">
+                    <div class="col-1" th:text="${user.getId()}"></div>
+                    <div class="col-2" th:text="${user.getEmail()}"></div>
+                    <div class="col-6" th:text="${user.getRoles()}"></div>
+                    <div class="col-3">
+                        -
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</div>
+<th:block th:include="templates :: footer_scripts"></th:block>
+</body>
+</html>
