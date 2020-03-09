@@ -39,15 +39,16 @@ public class SpoonacularServiceApiCalls {
     public ResponseEntity<RecipesWithDefinedIngredients> searchRecipeWithIngredients(Ingredients ingredients) {
         log.info("Composed url: " + SEARCH_BY_INGREDIENTS_URL);
         ResponseEntity<RecipesWithDefinedIngredients> resp = restTemplate.exchange(
-                recipeUrlCreator.createURLWithKey(SEARCH_BY_INGREDIENTS_URL + searchRecipeWithIngredients(ingredients.compose())),
-                HttpMethod.GET, null,
+                recipeUrlCreator.createURLWithKey(SEARCH_BY_INGREDIENTS_URL + secipeRecipeWithIngredients(ingredients.compose())),
+                HttpMethod.GET,
+                null,
                 RecipesWithDefinedIngredients.class);
 
         log.info(": " + resp.getBody());
         return resp;
     }
 
-    private String searchRecipeWithIngredients(String ingredients) {
+    private String secipeRecipeWithIngredients(String ingredients) {
         return "?ingredients=" + ingredients + "&number=5";
     }
 }

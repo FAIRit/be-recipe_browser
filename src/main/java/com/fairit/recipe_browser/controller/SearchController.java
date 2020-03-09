@@ -1,10 +1,12 @@
 package com.fairit.recipe_browser.controller;
 
+import com.fairit.recipe_browser.model.Ingredients;
 import com.fairit.recipe_browser.model.RecipeResults;
 import com.fairit.recipe_browser.model.RecipesWithDefinedIngredients;
 import com.fairit.recipe_browser.service.SearchRecipes;
 import com.fairit.recipe_browser.service.SearchRecipesByIngredients;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +35,8 @@ public class SearchController {
     public String findRecipeByIngredients(Model model,
                                           @RequestParam(name = "q", required = false) String phrase) {
         if (phrase != null && !phrase.isEmpty()) {
-            RecipesWithDefinedIngredients searchResult = searchRecipesByIngredients.searchRecipe(phrase);
+            Ingredients ingredients = new Ingredients(phrase);
+            RecipesWithDefinedIngredients searchResult = searchRecipesByIngredients.searchRecipe(ingredients);
             model.addAttribute("q", phrase);
             model.addAttribute("recipes", searchResult);
         }
