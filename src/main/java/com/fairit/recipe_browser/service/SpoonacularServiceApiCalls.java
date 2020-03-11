@@ -3,6 +3,7 @@ package com.fairit.recipe_browser.service;
 import com.fairit.recipe_browser.model.Ingredients;
 import com.fairit.recipe_browser.model.RecipeResults;
 import com.fairit.recipe_browser.model.RecipesWithDefinedIngredients;
+import com.fairit.recipe_browser.model.randomSearchRecipe.RecipeRandom;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;
@@ -16,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 public class SpoonacularServiceApiCalls {
     private final static String SEARCH_URL = "https://api.spoonacular.com/recipes/search";
     private final static String SEARCH_BY_INGREDIENTS_URL = "https://api.spoonacular.com/recipes/findByIngredients";
+    private final static String RANDOM_RECIPE_URL = "https://api.spoonacular.com/recipes/random?number=1";
 
     private final RestTemplate restTemplate;
     private final RecipeUrlCreator recipeUrlCreator;
@@ -39,7 +41,7 @@ public class SpoonacularServiceApiCalls {
     public ResponseEntity<RecipesWithDefinedIngredients> searchRecipeWithIngredients(Ingredients ingredients) {
         log.info("Composed url: " + SEARCH_BY_INGREDIENTS_URL);
         ResponseEntity<RecipesWithDefinedIngredients> resp = restTemplate.exchange(
-                recipeUrlCreator.createURLWithKey(SEARCH_BY_INGREDIENTS_URL + secipeRecipeWithIngredients(ingredients.compose())),
+                recipeUrlCreator.createURLWithKey(SEARCH_BY_INGREDIENTS_URL + searchRecipeWithIngredients(ingredients.compose())),
                 HttpMethod.GET,
                 null,
                 RecipesWithDefinedIngredients.class);
@@ -48,8 +50,20 @@ public class SpoonacularServiceApiCalls {
         return resp;
     }
 
-    private String secipeRecipeWithIngredients(String ingredients) {
+    private String searchRecipeWithIngredients(String ingredients) {
         return "?ingredients=" + ingredients + "&number=5";
+    }
+
+    public ResponseEntity<RecipeRandom> randomRecipe() {
+        log.info("Composed url: " + RANDOM_RECIPE_URL);
+        ResponseEntity<RecipeRandom> resp = restTemplate.exchange(
+                recipeUrlCreator.createURLWithKey(RANDOM_RECIPE_URL),
+                HttpMethod.GET,
+                null,
+                RecipeRandom.class);
+
+        log.info(": " + resp.getBody());
+        return resp;
     }
 }
 

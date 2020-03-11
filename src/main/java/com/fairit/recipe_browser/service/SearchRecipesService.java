@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class SearchRecipes {
+public class SearchRecipesService {
 
     private final SpoonacularServiceApiCalls apiCalls;
 
