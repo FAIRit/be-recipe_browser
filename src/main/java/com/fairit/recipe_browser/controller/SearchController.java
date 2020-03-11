@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/recipes/")
 @AllArgsConstructor
@@ -38,7 +40,7 @@ public class SearchController {
                                           @RequestParam(name = "q", required = false) String phrase) {
         if (phrase != null && !phrase.isEmpty()) {
             Ingredients ingredients = new Ingredients(phrase);
-            RecipesWithDefinedIngredients searchResult = searchRecipesByIngredientsService.searchRecipe(ingredients);
+            List<RecipesWithDefinedIngredients> searchResult = searchRecipesByIngredientsService.searchRecipe(ingredients);
             model.addAttribute("q", phrase);
             model.addAttribute("recipes", searchResult);
         }

@@ -24,12 +24,13 @@
     </div>
     <h2 th:if="${recipes != null}">Recipe list</h2>
     <div class="card shadow-sm p-1 bg-white rounded mb-3">
-        <div th:if="${recipes != null}" class="row col-md-12">
+        <div th:each="recipe : ${recipes}" class="row col-md-12 list-data-row">
+       <!-- <div th:if="${recipes != null}" class="row col-md-12"> -->
             <div class="row col-md-12 list-header-row">
                 <div class="col-3">Title</div>
                 <div><!--Buttons--></div>
             </div>
-                <div class="col-3" th:text="${recipes.getTitle().toString()}"></div>
+                <div class="col-3" th:text="${recipe.getTitle().toString()}"></div>
         </div>
     </div>
 </div>
