@@ -6,14 +6,16 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Service
 public class SearchRecipesByIngredientsService {
 
     private final SpoonacularServiceApiCalls apiCalls;
 
-    public RecipesWithDefinedIngredients searchRecipe(Ingredients ingredients) {
-        ResponseEntity<RecipesWithDefinedIngredients> searchRecipesWithDefinedIngredients = apiCalls.searchRecipeWithIngredients(ingredients);
+    public List<RecipesWithDefinedIngredients> searchRecipe(Ingredients ingredients) {
+        ResponseEntity<List<RecipesWithDefinedIngredients>> searchRecipesWithDefinedIngredients = apiCalls.searchRecipeWithIngredients(ingredients);
 
         return searchRecipesWithDefinedIngredients.getBody();
     }

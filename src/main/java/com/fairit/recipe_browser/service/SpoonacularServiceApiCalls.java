@@ -6,10 +6,13 @@ import com.fairit.recipe_browser.model.RecipesWithDefinedIngredients;
 import com.fairit.recipe_browser.model.randomSearchRecipe.RecipeRandom;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -38,15 +41,16 @@ public class SpoonacularServiceApiCalls {
         return "?query=" + recipe + "&number=5";
     }
 
-    public ResponseEntity<RecipesWithDefinedIngredients> searchRecipeWithIngredients(Ingredients ingredients) {
+    public ResponseEntity<List<RecipesWithDefinedIngredients>> searchRecipeWithIngredients(Ingredients ingredients) {
         log.info("Composed url: " + SEARCH_BY_INGREDIENTS_URL);
-        ResponseEntity<RecipesWithDefinedIngredients> resp = restTemplate.exchange(
+        ResponseEntity<List<RecipesWithDefinedIngredients>> resp = restTemplate.exchange(
                 recipeUrlCreator.createURLWithKey(SEARCH_BY_INGREDIENTS_URL + searchRecipeWithIngredients(ingredients.compose())),
                 HttpMethod.GET,
                 null,
-                RecipesWithDefinedIngredients.class);
+                new ParameterizedTypeReference<>() {
+                });
+           log.info(": " + resp.getBody());
 
-        log.info(": " + resp.getBody());
         return resp;
     }
 
