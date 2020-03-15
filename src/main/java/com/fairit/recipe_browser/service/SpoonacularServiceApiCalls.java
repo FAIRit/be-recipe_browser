@@ -20,7 +20,7 @@ import java.util.List;
 public class SpoonacularServiceApiCalls {
     private final static String SEARCH_URL = "https://api.spoonacular.com/recipes/search";
     private final static String SEARCH_BY_INGREDIENTS_URL = "https://api.spoonacular.com/recipes/findByIngredients";
-    private final static String RANDOM_RECIPE_URL = "https://api.spoonacular.com/recipes/random?number=1";
+    private final static String RANDOM_RECIPE_URL = "https://api.spoonacular.com/recipes/random";
 
     private final RestTemplate restTemplate;
     private final RecipeUrlCreator recipeUrlCreator;
@@ -47,27 +47,28 @@ public class SpoonacularServiceApiCalls {
                 recipeUrlCreator.createURLWithKey(SEARCH_BY_INGREDIENTS_URL + searchRecipeWithIngredients(ingredients.compose())),
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<>() {
-                });
-           log.info(": " + resp.getBody());
-
+                new ParameterizedTypeReference<>(){});
+        log.info(": " + resp.getBody());
         return resp;
     }
 
     private String searchRecipeWithIngredients(String ingredients) {
-        return "?ingredients=" + ingredients + "&number=5";
+        return "?ingredients=" + ingredients + "&number=10";
     }
 
-    public ResponseEntity<RecipeRandom> randomRecipe() {
+    public ResponseEntity<RecipeRandom> randomRecipe(String tags) {
         log.info("Composed url: " + RANDOM_RECIPE_URL);
         ResponseEntity<RecipeRandom> resp = restTemplate.exchange(
-                recipeUrlCreator.createURLWithKey(RANDOM_RECIPE_URL),
+                recipeUrlCreator.createURLWithKey(RANDOM_RECIPE_URL + searchRecipeRandom(tags)),
                 HttpMethod.GET,
                 null,
                 RecipeRandom.class);
-
         log.info(": " + resp.getBody());
         return resp;
+    }
+
+    private String searchRecipeRandom(String tag) {
+        return "?number=1&tags=" + tag;
     }
 }
 

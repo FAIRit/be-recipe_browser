@@ -40,9 +40,12 @@ public class SearchController {
                                           @RequestParam(name = "q", required = false) String phrase) {
         if (phrase != null && !phrase.isEmpty()) {
             Ingredients ingredients = new Ingredients(phrase);
-            List<RecipesWithDefinedIngredients > searchResult = searchRecipesByIngredientsService.searchRecipe(ingredients);
+            List<RecipesWithDefinedIngredients> searchResult = searchRecipesByIngredientsService.searchRecipe(ingredients);
             model.addAttribute("q", phrase);
-            model.addAttribute("recipes", searchResult);
+            //    model.addAttribute("recipes", searchResult.get(1).getId());
+            model.addAttribute("title", searchResult.get(1).getTitle());
+            model.addAttribute("usedIngredients", searchResult.get(1).getUsedIngredients().toString());
+            model.addAttribute("total", searchResult.size());
         }
         return "findByIngredients-list";
     }
@@ -50,14 +53,24 @@ public class SearchController {
     @GetMapping(path = "/random/")
     public String findRandomRecipe(Model model,
                                    @RequestParam(name = "q", required = false) String phrase) {
-
         if (phrase != null && !phrase.isEmpty()) {
-            RecipeRandom random = randomRecipeService.searchRandomRecipe();
+            RecipeRandom random = randomRecipeService.searchRandomRecipe(phrase);
             model.addAttribute("q", phrase);
-
             model.addAttribute("recipe", random);
+            model.addAttribute("dishType", random.getDishTypes().listIterator());
+            model.addAttribute("dishTypes", random.getDishTypes().size());
+            model.addAttribute("title", random.getTitle());
+            model.addAttribute("instructions", random.getInstructions());
         }
-        return "random_recipe";
+        return "random-recipe";
     }
+
+//    @GetMapping(path = "/random/")
+//    public String findRandomRecipe(Model model) {
+//        RecipeRandom random = randomRecipeService.searchRandomRecipe();
+//        model.addAttribute("title", random.getTitle());
+//        model.addAttribute("instructions", random.getInstructions());
+//        return "random-recipe";
+//    }
 
 }

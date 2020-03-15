@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:include="templates :: headers"></th:block>
+    <title>Recipe for today</title>
+</head>
+<body>
+<th:block th:include="templates :: navigator_bar"></th:block>
+<div class="content-container">
+    <div class="row col-md-12 bordered">
+        <form class="row col-md-12" th:action="@{/recipes/random/}" th:method="get">
+
+
+            <div class="offset-2 col-3">
+                <h4 >Choose meal type</h4>
+            </div>
+            <div class="col-3">
+                <!--                <input class="form-control" type="text" name="q">-->
+                <select class="form-control" th:field="*{recipe}">
+                    <option th:each="dishType : ${dishTypes}"
+                            th:value="${dishTypes}"
+                            th:text="${dishType}">
+                    </option>
+<!--                    <option>main course</option>-->
+<!--                    <option>side dish</option>-->
+<!--                    <option>dessert</option>-->
+<!--                    <option>appetizer</option>-->
+<!--                    <option>salad</option>-->
+                </select>
+            </div>
+        </form>
+    </div>
+    <div th:if="${recipe != null}" class="row col-md-12">
+        <div class="card shadow-sm p-1 bg-white rounded mb-3">
+
+            <div class="row col-md-12 bordered">
+                <div class="col-6">Title</div>
+                <div class="col-6" th:text="${title}"></div>
+            </div>
+            <div class="row col-md-12 bordered">
+                <div class="col-6">instructions</div>
+                <div class="col-6" th:text="${instructions}"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

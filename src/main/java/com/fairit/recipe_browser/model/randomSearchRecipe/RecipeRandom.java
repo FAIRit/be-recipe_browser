@@ -35,8 +35,8 @@ public class RecipeRandom {
     private String sourceName;
     private Double pricePerServing;
 
-    @ElementCollection
-    @CollectionTable(name = "extendedIngredients")
+//    @ElementCollection
+//    @CollectionTable(name = "extendedIngredients")
     private List<ExtendedIngredient> extendedIngredients;
 
     private Long id;
@@ -46,31 +46,31 @@ public class RecipeRandom {
     private String image;
     private String imageType;
     private String summary;
-
-    @ElementCollection
-    @CollectionTable(name = "cuisines")
+//
+//    @ElementCollection
+//    @CollectionTable(name = "cuisines")
     private List<String> cuisines;
 
-    @ElementCollection
-    @CollectionTable(name = "dishTypes")
+//    @ElementCollection
+//    @CollectionTable(name = "dishTypes")
     private List<String> dishTypes;
 
-    @ElementCollection
-    @CollectionTable(name = "diets")
+//    @ElementCollection
+//    @CollectionTable(name = "diets")
     private List<String> diets;
 
-    @ElementCollection
-    @CollectionTable(name = "occasions")
+//    @ElementCollection
+//    @CollectionTable(name = "occasions")
     private List<String> occasions;
 
-    @ElementCollection
-    @CollectionTable(name = "WinePairing")
+//    @ElementCollection
+//    @CollectionTable(name = "WinePairing")
     private List<WinePairing> winePairing;
 
     private String instructions;
 
-    @ElementCollection
-    @CollectionTable(name = "analyzedInstructions")
+//    @ElementCollection
+//    @CollectionTable(name = "analyzedInstructions")
     private List<AnalyzedInstructions> analyzedInstructions;
 
     public Integer originalId;

@@ -22,14 +22,23 @@
             </div>
         </form>
     </div>
-    <h2 th:if="${recipes != null}">Recipe list</h2>
-    <div class="card shadow-sm p-1 bg-white rounded mb-3">
-        <div th:if="${recipes != null}" class="row col-md-12">
+    <div th:if="${title != null}">Recipe list
+        <div class="card shadow-sm p-1 bg-white rounded mb-3">
+            <!--       <div th:if="${recipes != null}" class="row col-md-12">-->
             <div class="row col-md-12 list-header-row">
-                <div class="col-3">Title</div>
-                <div><!--Buttons--></div>
+                <div class="col-4">Title</div>
+                <div class="col-6">Used ingredients</div>
+                <div><!--Button--></div>
             </div>
-                <div class="col-3" th:text="${recipes.getTitle().toString()}"></div>
+            <div class="row col-md-12 list-header-row">
+
+                <div class="col-4" th:text="${title}"></div>
+                <div class="col-6" th:text="${usedIngredients}"></div>
+            </div>
+            <div class="row col-md-12 info-row">
+                <div class="col-3">Total results:</div>
+                <div class="col-3" th:text="${total}"></div>
+            </div>
         </div>
     </div>
 </div>
