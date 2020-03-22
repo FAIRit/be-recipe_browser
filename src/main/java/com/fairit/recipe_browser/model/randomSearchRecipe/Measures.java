@@ -5,12 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+//@Data
+//@NoArgsConstructor
+//@AllArgsConstructor
 public class Measures {
 
-    private MeasuresProperties us;
-    private MeasuresProperties metric;
+//    private MeasuresProperties us;
+//    private MeasuresProperties metric;
 
 }

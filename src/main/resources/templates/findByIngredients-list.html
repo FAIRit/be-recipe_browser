@@ -26,14 +26,16 @@
         <div class="card shadow-sm p-1 bg-white rounded mb-3">
             <!--       <div th:if="${recipes != null}" class="row col-md-12">-->
             <div class="row col-md-12 list-header-row">
-                <div class="col-4">Title</div>
-                <div class="col-6">Used ingredients</div>
-                <div><!--Button--></div>
+                <div class="col-3">Title</div>
+                <div class="col-5">Used ingredients</div>
+                <div class="col-4"></div>
             </div>
             <div class="row col-md-12 list-header-row">
-
-                <div class="col-4" th:text="${title}"></div>
-                <div class="col-6" th:text="${usedIngredients}"></div>
+                <div class="col-3" th:text="${title}"></div>
+                <div class="col-5" th:text="${usedIngredients}"></div>
+                <div class="col-4">
+                    <img th:href="${image}">
+                </div>
             </div>
             <div class="row col-md-12 info-row">
                 <div class="col-3">Total results:</div>

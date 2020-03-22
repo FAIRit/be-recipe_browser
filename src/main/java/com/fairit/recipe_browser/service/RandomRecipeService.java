@@ -11,8 +11,8 @@ public class RandomRecipeService {
 
     private final SpoonacularServiceApiCalls apiCalls;
 
-    public RecipeRandom searchRandomRecipe(String tag) {
-        ResponseEntity<RecipeRandom> searchRandomExample = apiCalls.randomRecipe(tag);
+    public RecipeRandom searchRandomRecipe() {
+        ResponseEntity<RecipeRandom> searchRandomExample = apiCalls.randomRecipe();
 
         return searchRandomExample.getBody();
     }

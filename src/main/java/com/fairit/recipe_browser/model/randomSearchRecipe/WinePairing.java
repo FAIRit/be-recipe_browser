@@ -4,14 +4,26 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class WinePairing {
 
-    public List<Object> pairedWines ;
+    @ElementCollection
+    @CollectionTable(name = "pairedWines")
+    public List<String> pairedWines ;
+
+    @Id
     public String pairingText;
-    public List<Object> productMatches;
+
+    @ElementCollection
+    @CollectionTable(name = "productMatches")
+    public List<ProductMatch> productMatches;
 }

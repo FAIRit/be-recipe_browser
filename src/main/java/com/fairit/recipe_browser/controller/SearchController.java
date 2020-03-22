@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -44,33 +45,34 @@ public class SearchController {
             model.addAttribute("q", phrase);
             //    model.addAttribute("recipes", searchResult.get(1).getId());
             model.addAttribute("title", searchResult.get(1).getTitle());
-            model.addAttribute("usedIngredients", searchResult.get(1).getUsedIngredients().toString());
+            model.addAttribute("usedIngredients", searchResult.get(1).getUsedIngredients());
             model.addAttribute("total", searchResult.size());
+            model.addAttribute("image", searchResult.get(1).getImage());
         }
         return "findByIngredients-list";
     }
 
-    @GetMapping(path = "/random/")
-    public String findRandomRecipe(Model model,
-                                   @RequestParam(name = "q", required = false) String phrase) {
-        if (phrase != null && !phrase.isEmpty()) {
-            RecipeRandom random = randomRecipeService.searchRandomRecipe(phrase);
-            model.addAttribute("q", phrase);
-            model.addAttribute("recipe", random);
-            model.addAttribute("dishType", random.getDishTypes().listIterator());
-            model.addAttribute("dishTypes", random.getDishTypes().size());
-            model.addAttribute("title", random.getTitle());
-            model.addAttribute("instructions", random.getInstructions());
-        }
-        return "random-recipe";
-    }
-
 //    @GetMapping(path = "/random/")
-//    public String findRandomRecipe(Model model) {
-//        RecipeRandom random = randomRecipeService.searchRandomRecipe();
-//        model.addAttribute("title", random.getTitle());
-//        model.addAttribute("instructions", random.getInstructions());
+//    public String findRandomRecipe(Model model,
+//                                   @RequestParam(name = "q", required = false) String phrase) {
+//        if (phrase != null && !phrase.isEmpty()) {
+//            RecipeRandom randomRecipe = randomRecipeService.searchRandomRecipe(phrase);
+//            model.addAttribute("q", phrase);
+//            model.addAttribute("recipe", randomRecipe);
+//            model.addAttribute("dishType", randomRecipe.getDishTypes().listIterator().toString().intern());
+//            model.addAttribute("dishTypes", randomRecipe.getDishTypes().size());
+//            model.addAttribute("title", randomRecipe.getTitle());
+//            model.addAttribute("instructions", randomRecipe.getInstructions());
+//        }
 //        return "random-recipe";
 //    }
+
+    @GetMapping(path = "/random/")
+    public String findRandomRecipe(Model model) {
+        RecipeRandom random = randomRecipeService.searchRandomRecipe();
+        model.addAttribute("title", random.getTitle());
+        model.addAttribute("description", random.getSummary());
+        return "random-recipe";
+    }
 
 }

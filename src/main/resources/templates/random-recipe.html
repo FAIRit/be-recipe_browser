@@ -9,29 +9,29 @@
 <th:block th:include="templates :: navigator_bar"></th:block>
 <div class="content-container">
     <div class="row col-md-12 bordered">
-        <form class="row col-md-12" th:action="@{/recipes/random/}" th:method="get">
+        <form class="row col-md-12" th:action="@{/recipes/random/}" th:method="get" th:object="${recipe}">
 
 
-            <div class="offset-2 col-3">
-                <h4 >Choose meal type</h4>
-            </div>
-            <div class="col-3">
-                <!--                <input class="form-control" type="text" name="q">-->
-                <select class="form-control" th:field="*{recipe}">
-                    <option th:each="dishType : ${dishTypes}"
-                            th:value="${dishTypes}"
-                            th:text="${dishType}">
-                    </option>
-<!--                    <option>main course</option>-->
-<!--                    <option>side dish</option>-->
+<!--            <div class="offset-2 col-3">-->
+<!--                <h4 >Choose meal type</h4>-->
+<!--            </div>-->
+<!--            <div class="col-3">-->
+<!--                &lt;!&ndash;                <input class="form-control" type="text" name="q">&ndash;&gt;-->
+<!--                <select class="form-control" th:field="*{dishType}" >-->
+<!--                    <option th:each="dishType : ${dishTypes}"-->
+<!--                            th:value="${dishType}"-->
+<!--                            th:text="${dishType}">-->
+<!--                    </option>-->
+<!--                    <option th:value="q" th:text="main course">main course</option>-->
+<!--                    <option th:value="q" th:text="side dish">side dish</option>-->
 <!--                    <option>dessert</option>-->
 <!--                    <option>appetizer</option>-->
 <!--                    <option>salad</option>-->
-                </select>
-            </div>
+<!--                </select>-->
+<!--            </div>-->
         </form>
     </div>
-    <div th:if="${recipe != null}" class="row col-md-12">
+<!--    <div th:if="${recipe != null}" class="row col-md-12">-->
         <div class="card shadow-sm p-1 bg-white rounded mb-3">
 
             <div class="row col-md-12 bordered">
@@ -39,11 +39,11 @@
                 <div class="col-6" th:text="${title}"></div>
             </div>
             <div class="row col-md-12 bordered">
-                <div class="col-6">instructions</div>
-                <div class="col-6" th:text="${instructions}"></div>
+                <div class="col-6">Description</div>
+                <div class="col-6" th:text="${description}"></div>
             </div>
         </div>
-    </div>
+<!--    </div>-->
 </div>
 </body>
 </html>

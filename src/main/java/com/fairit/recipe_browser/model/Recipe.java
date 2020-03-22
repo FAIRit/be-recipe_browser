@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Recipe {
+public class Recipe extends FavouriteRecipe{
 
     @Id
     private Long id;
