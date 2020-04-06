@@ -25,7 +25,7 @@ public class Step {
     @CollectionTable(name = "equipment")
     private List<Equipment> equipment;
 
-//    @OneToOne
-//    private StepLength length;
+    @Transient
+    private StepLength length;
 
 }

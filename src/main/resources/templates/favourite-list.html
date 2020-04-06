@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:include="templates :: headers"></th:block>
+    <title>Recipe browser</title>
+</head>
+<body>
+<th:block th:include="templates :: navigator_bar"></th:block>
+<div class="content-container">
+    <h2>Recipe search</h2>
+    <div class="row col-md-12 bordered">
+        <form class="row col-md-12" th:action="@{/recipes/search/}" th:method="get">
+            <div class="offset-2 col-2">
+                <h4>Search</h4>
+            </div>
+            <div class="col-2">
+                <input class="form-control" type="text" name="q">
+            </div>
+            <div class="col-2">
+                <button class="form-control btn btn-primary" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+    <div th:if="${favouriteList != null}">
+        <h2>Recipe list</h2>
+        <div class="card shadow-sm p-1 bg-white rounded mb-3">
+            <div th:if="${favouriteList != null}" class="row col-md-12">
+                <div class="row col-md-12 list-header-row">
+                    <div class="col-3">Title</div>
+                    <div class="col-3">Ready in minutes</div>
+                    <div class="col-3">Servings</div>
+                </div>
+                <div th:each="recipe : ${favouriteList.size()}" class="row col-md-12 list-data-row">
+                    <div class="col-3" th:text="${favouriteList.listIterator()}"></div>
+                    <div class="col-3" th:text="${favouriteList}"></div>
+                    <div class="col-3" th:text="${favouriteList}"></div>
+                </div>
+                <div class="row col-md-12 info-row">
+                    <div class="col-3">Total results:</div>
+                    <div class="col-3" th:text="${favouriteList.size()}"></div>
+                </div>
+            </div>
+        </div>
+        <div th:if="${favouriteList.size()==0}">
+            <div class="text-center" th:text="'Sorry, no records found'"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

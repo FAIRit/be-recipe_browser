@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:include="templates :: headers"></th:block>
+    <title>Recipe for today</title>
+</head>
+<body>
+<th:block th:include="templates :: navigator_bar"></th:block>
+<div class="container main-window">
+    <div class="row col-md-12 bordered">
+        <form class="row col-md-12" th:action="@{'/recipes/details/'+${q}/}" th:method="get" th:object="${q}">
+            <div class="card shadow-sm p-1 bg-white rounded mb-3">
+                <div class="row colored-row">
+                    <div class="col-4" id="recipe"
+                         th:text="${recipe}"></div>
+                    <div class="col-4 font-weight-bold" id="cityName"
+                         th:text="${trip.getToAirport().getCity().getCityName()}"></div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+</div>
+</body>
+</html>

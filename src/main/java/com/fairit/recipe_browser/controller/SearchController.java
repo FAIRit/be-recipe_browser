@@ -1,19 +1,13 @@
 package com.fairit.recipe_browser.controller;
 
-import com.fairit.recipe_browser.model.Ingredients;
-import com.fairit.recipe_browser.model.RecipeResults;
-import com.fairit.recipe_browser.model.RecipesWithDefinedIngredients;
+import com.fairit.recipe_browser.model.*;
 import com.fairit.recipe_browser.model.randomSearchRecipe.RecipeRandom;
-import com.fairit.recipe_browser.service.RandomRecipeService;
-import com.fairit.recipe_browser.service.SearchRecipesByIngredientsService;
-import com.fairit.recipe_browser.service.SearchRecipesService;
+import com.fairit.recipe_browser.model.recipeInformation.RecipeInformation;
+import com.fairit.recipe_browser.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +18,8 @@ public class SearchController {
     private final SearchRecipesService searchRecipesService;
     private final SearchRecipesByIngredientsService searchRecipesByIngredientsService;
     private final RandomRecipeService randomRecipeService;
+    private final FavouriteService favouriteService;
+    private final RecipeInformationService recipeInformationService;
 
     @GetMapping(path = "/search/")
     public String searchRecipes(Model model,
@@ -73,6 +69,27 @@ public class SearchController {
         model.addAttribute("title", random.getTitle());
         model.addAttribute("description", random.getSummary());
         return "random-recipe";
+    }
+
+    @GetMapping(path = "/details/{recipeId}")
+    public String recipesInformation(Model model,
+//                                     @RequestParam(name = "q", required = false) Long recipeId,
+                                     @PathVariable Long recipeId) {
+        if (recipeId != null ) {
+            RecipeInformation recipeInformation = recipeInformationService.recipeInformationById(recipeId);
+            model.addAttribute("q", recipeId);
+            model.addAttribute("recipe", recipeInformation);
+        }
+        return "recipe-details";
+    }
+
+
+
+    @PostMapping("/addfavourite")
+    public String addfavourite(Recipe recipe) {
+        favouriteService.save(recipe);
+
+        return "redirect:/user/favourite-list";
     }
 
 }

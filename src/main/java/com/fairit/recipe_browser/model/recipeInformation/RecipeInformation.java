@@ -1,7 +1,8 @@
-package com.fairit.recipe_browser.model.randomSearchRecipe;
+package com.fairit.recipe_browser.model.recipeInformation;
 
-
-import com.fairit.recipe_browser.model.FavouriteRecipe;
+import com.fairit.recipe_browser.model.randomSearchRecipe.AnalyzedInstructions;
+import com.fairit.recipe_browser.model.randomSearchRecipe.ExtendedIngredient;
+import com.fairit.recipe_browser.model.randomSearchRecipe.WinePairing;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,10 +11,10 @@ import javax.persistence.*;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-public class RecipeRandom extends FavouriteRecipe {
+public class RecipeInformation {
 
     private Boolean vegetarian;
     private Boolean vegan;
@@ -23,7 +24,7 @@ public class RecipeRandom extends FavouriteRecipe {
     private Boolean cheap;
     private Boolean veryPopular;
     private Boolean sustainable;
-    private Double weightWatcherSmartPoints;
+    private Integer weightWatcherSmartPoints;
     private String gaps;
     private Boolean lowFodmap;
     private String sourceUrl;
@@ -34,11 +35,9 @@ public class RecipeRandom extends FavouriteRecipe {
     private String creditsText;
     private String license;
     private String sourceName;
-    private Double pricePerServing;
 
-//    @ElementCollection
-//    @CollectionTable(name = "extendedIngredients")
-    @Transient
+    @ElementCollection
+    @CollectionTable(name = "extendedIngredients")
     private List<ExtendedIngredient> extendedIngredients;
 
     @Id
@@ -48,6 +47,9 @@ public class RecipeRandom extends FavouriteRecipe {
     private Integer servings;
     private String image;
     private String imageType;
+
+    @Transient
+    private Nutrition nutrition;
     private String summary;
 
     @Transient
@@ -63,12 +65,11 @@ public class RecipeRandom extends FavouriteRecipe {
     private List<String> occasions;
 
     @Transient
-    private List<WinePairing> winePairing;
-
+    private WinePairing winePairing;
     private String instructions;
 
     @Transient
     private List<AnalyzedInstructions> analyzedInstructions;
 
-    public Long originalId;
+    private Long originalId;
 }

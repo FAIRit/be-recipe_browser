@@ -36,10 +36,5 @@ public class FavouriteService {
         List<FavouriteRecipe> recipes = new ArrayList<>();
         randomRecipeRepository.findAll().forEach(recipes::add);
         return recipes;
-
-
-        //GET https://api.spoonacular.com/recipes/{id}/information
     }
-
-
 }
