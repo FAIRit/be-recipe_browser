@@ -4,7 +4,7 @@ import com.fairit.recipe_browser.model.Ingredients;
 import com.fairit.recipe_browser.model.RecipeResults;
 import com.fairit.recipe_browser.model.RecipesWithDefinedIngredients;
 import com.fairit.recipe_browser.model.random.recipe.RecipeRandomResponse;
-import com.fairit.recipe_browser.model.recipeInformation.RecipeInformation;
+import com.fairit.recipe_browser.model.recipe.information.RecipeInformation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
@@ -21,7 +21,6 @@ import java.util.List;
 public class SpoonacularServiceApiCalls {
     private final static String SEARCH_URL = "https://api.spoonacular.com/recipes/search";
     private final static String SEARCH_BY_INGREDIENTS_URL = "https://api.spoonacular.com/recipes/findByIngredients";
-  //  private final static String RANDOM_RECIPE_URL = "https://api.spoonacular.com/recipes/random";
     private final static String RANDOM_RECIPE_URL = "https://api.spoonacular.com/recipes/random?number=1";
     private final static String RECIPE_INFORMATION_URL = "https://api.spoonacular.com/recipes";
 
@@ -73,7 +72,7 @@ public class SpoonacularServiceApiCalls {
     public ResponseEntity<RecipeInformation> searchRecipeInformation(Long id) {
         log.info("Composed url: " + RECIPE_INFORMATION_URL);
         ResponseEntity<RecipeInformation> resp = restTemplate.exchange(
-                recipeUrlCreator.createURLWithKey(SEARCH_URL + recipeInformation(id)),
+                recipeUrlCreator.createURLWithKey(RECIPE_INFORMATION_URL + recipeInformation(id)),
                 HttpMethod.GET,
                 null,
                 RecipeInformation.class);
@@ -85,7 +84,5 @@ public class SpoonacularServiceApiCalls {
     private String recipeInformation(Long id) {
         return "/" + id + "/information?";
     }
-
-
 }
 

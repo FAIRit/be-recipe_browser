@@ -1,8 +1,6 @@
-package com.fairit.recipe_browser.model.recipeInformation;
+package com.fairit.recipe_browser.model.recipe.information;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 public class Nutrient {

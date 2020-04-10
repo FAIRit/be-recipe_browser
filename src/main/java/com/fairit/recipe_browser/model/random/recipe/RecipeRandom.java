@@ -4,18 +4,20 @@ package com.fairit.recipe_browser.model.random.recipe;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 public class RecipeRandom {
 
+    private Long id;
+    private String title;
+    private Integer readyInMinutes;
+    private Integer servings;
+    private String image;
+    private String imageType;
+    private String summary;
     private Boolean vegetarian;
     private Boolean vegan;
     private Boolean glutenFree;
@@ -36,40 +38,13 @@ public class RecipeRandom {
     private String license;
     private String sourceName;
     private Double pricePerServing;
-
-//    @ElementCollection
-//    @CollectionTable(name = "extendedIngredients")
-    @Transient
     private List<ExtendedIngredient> extendedIngredients;
-
-    @Id
-    private Long id;
-    private String title;
-    private Integer readyInMinutes;
-    private Integer servings;
-    private String image;
-    private String imageType;
-    private String summary;
-
-    @Transient
     private List<String> cuisines;
-
-    @Transient
     private List<String> dishTypes;
-
-    @Transient
     private List<String> diets;
-
-    @Transient
     private List<String> occasions;
-
-//    @Transient
-//    private List<WinePairing> winePairing;
-
     private String instructions;
-
-    @Transient
     private List<AnalyzedInstructions> analyzedInstructions;
-
     public Long originalId;
+    private WinePairing winePairing;
 }

@@ -2,20 +2,10 @@ body {
     background-color: #4da6ff;
 }
 
-
 .m-table-header {
-    background-color: #9191d9 !important;
+    background-color: #4d97ff !important;
     font-weight: bold;
     margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 7px !important;
-}
-
-.m-table-row-subelement-hidden{
-    display: inline-block;
-    background-color: #ff8811;
-    color: white;
-    text-decoration: none;
-    padding: 20px;
-    transition: background 0.2s ease-in-out;
 }

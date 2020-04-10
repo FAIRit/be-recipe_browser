@@ -1,7 +1,6 @@
-package com.fairit.recipe_browser.model.recipeInformation;
+package com.fairit.recipe_browser.model.recipe.information;
 
 import lombok.Data;
-
 
 @Data
 public class CaloricBreakdown {

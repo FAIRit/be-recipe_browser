@@ -1,4 +1,4 @@
-package com.fairit.recipe_browser.model.recipeInformation;
+package com.fairit.recipe_browser.model.recipe.information;
 
 import com.fairit.recipe_browser.model.random.recipe.AnalyzedInstructions;
 import com.fairit.recipe_browser.model.random.recipe.ExtendedIngredient;
@@ -13,7 +13,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 public class RecipeInformation {
 
     private Boolean vegetarian;
@@ -35,41 +34,21 @@ public class RecipeInformation {
     private String creditsText;
     private String license;
     private String sourceName;
-
-    @ElementCollection
-    @CollectionTable(name = "extendedIngredients")
     private List<ExtendedIngredient> extendedIngredients;
-
-    @Id
     private Long id;
     private String title;
     private Integer readyInMinutes;
     private Integer servings;
     private String image;
     private String imageType;
-
-    @Transient
     private Nutrition nutrition;
     private String summary;
-
-    @Transient
     private List<String> cuisines;
-
-    @Transient
     private List<String> dishTypes;
-
-    @Transient
     private List<String> diets;
-
-    @Transient
     private List<String> occasions;
-
-    @Transient
     private WinePairing winePairing;
     private String instructions;
-
-    @Transient
     private List<AnalyzedInstructions> analyzedInstructions;
-
     private Long originalId;
 }

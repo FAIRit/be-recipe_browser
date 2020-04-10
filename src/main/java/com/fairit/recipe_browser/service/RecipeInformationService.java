@@ -1,6 +1,6 @@
 package com.fairit.recipe_browser.service;
 
-import com.fairit.recipe_browser.model.recipeInformation.RecipeInformation;
+import com.fairit.recipe_browser.model.recipe.information.RecipeInformation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

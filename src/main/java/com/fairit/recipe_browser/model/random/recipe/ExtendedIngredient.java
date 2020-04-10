@@ -10,10 +10,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 public class ExtendedIngredient {
 
-    @Id
     private Long id;
     private String aisle;
     private String image;
@@ -24,16 +22,8 @@ public class ExtendedIngredient {
     private String originalName;
     private Double amount;
     private String unit;
-
-    @ElementCollection
-    @CollectionTable(name = "meta")
     private List<String> meta;
-
-    @ElementCollection
-    @CollectionTable(name = "metaInformation")
     private List<String> metaInformation;
-
-    @Transient
     private Measures measures;
 
 }

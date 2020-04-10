@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <th:block th:include="templates :: headers"></th:block>
-    <title>Recipe for today</title>
+    <title>Recipe details</title>
 </head>
 <body>
 <th:block th:include="templates :: navigator_bar"></th:block>
 <div class="container main-window">
     <div class="row col-md-12 bordered">
         <form class="row col-md-12" th:action="@{'/recipes/details/'+${q}/}" th:method="get" th:object="${q}">
-            <div class="card shadow-sm p-1 bg-white rounded mb-3">
+            <div class="card shadow-sm p-4 bg-white rounded mb-3">
                 <div class="row colored-row" id="recipeTitle" th:text="${recipe.getTitle()}"></div>
-                <div class="row" id="instructions" th:text="${recipe.getInstructions()}"></div>
+                <div class="row colored-row" id="instructions" th:text="${recipe.getInstructions()}"></div>
             </div>
         </form>
     </div>

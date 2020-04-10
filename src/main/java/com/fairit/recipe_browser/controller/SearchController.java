@@ -2,7 +2,7 @@ package com.fairit.recipe_browser.controller;
 
 import com.fairit.recipe_browser.model.*;
 import com.fairit.recipe_browser.model.random.recipe.RecipeRandom;
-import com.fairit.recipe_browser.model.recipeInformation.RecipeInformation;
+import com.fairit.recipe_browser.model.recipe.information.RecipeInformation;
 import com.fairit.recipe_browser.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -49,21 +49,6 @@ public class SearchController {
         }
         return "findByIngredients-list";
     }
-
-//    @GetMapping(path = "/random/")
-//    public String findRandomRecipe(Model model,
-//                                   @RequestParam(name = "q", required = false) String phrase) {
-//        if (phrase != null && !phrase.isEmpty()) {
-//            RecipeRandom randomRecipe = randomRecipeService.searchRandomRecipe(phrase);
-//            model.addAttribute("q", phrase);
-//            model.addAttribute("recipe", randomRecipe);
-//            model.addAttribute("dishType", randomRecipe.getDishTypes().listIterator().toString().intern());
-//            model.addAttribute("dishTypes", randomRecipe.getDishTypes().size());
-//            model.addAttribute("title", randomRecipe.getTitle());
-//            model.addAttribute("instructions", randomRecipe.getInstructions());
-//        }
-//        return "random-recipe";
-//    }
 
     @GetMapping(path = "/random/")
     public String findRandomRecipe(Model model) {

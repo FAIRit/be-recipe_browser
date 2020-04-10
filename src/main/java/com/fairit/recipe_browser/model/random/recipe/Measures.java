@@ -1,7 +1,7 @@
 package com.fairit.recipe_browser.model.random.recipe;
 
-import com.fairit.recipe_browser.model.recipeInformation.Metric;
-import com.fairit.recipe_browser.model.recipeInformation.Us;
+import com.fairit.recipe_browser.model.recipe.information.Metric;
+import com.fairit.recipe_browser.model.recipe.information.Us;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
