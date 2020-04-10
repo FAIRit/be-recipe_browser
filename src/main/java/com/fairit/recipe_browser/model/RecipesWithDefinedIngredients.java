@@ -14,8 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class RecipesWithDefinedIngredients extends FavouriteRecipe {
+//@JsonIgnoreProperties(ignoreUnknown = true)
+public class RecipesWithDefinedIngredients {
 
     @Id
     private Long id;

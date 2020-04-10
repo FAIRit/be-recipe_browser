@@ -1,4 +1,4 @@
-package com.fairit.recipe_browser.model.randomSearchRecipe;
+package com.fairit.recipe_browser.model.random.recipe;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

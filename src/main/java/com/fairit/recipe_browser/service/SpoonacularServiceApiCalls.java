@@ -3,7 +3,7 @@ package com.fairit.recipe_browser.service;
 import com.fairit.recipe_browser.model.Ingredients;
 import com.fairit.recipe_browser.model.RecipeResults;
 import com.fairit.recipe_browser.model.RecipesWithDefinedIngredients;
-import com.fairit.recipe_browser.model.randomSearchRecipe.RecipeRandom;
+import com.fairit.recipe_browser.model.random.recipe.RecipeRandomResponse;
 import com.fairit.recipe_browser.model.recipeInformation.RecipeInformation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -59,28 +59,13 @@ public class SpoonacularServiceApiCalls {
         return "?ingredients=" + ingredients + "&number=10";
     }
 
-//    public ResponseEntity<RecipeRandom> randomRecipe(String tags) {
-//        log.info("Composed url: " + RANDOM_RECIPE_URL);
-//        ResponseEntity<RecipeRandom> resp = restTemplate.exchange(
-//                recipeUrlCreator.createURLWithKey(RANDOM_RECIPE_URL + searchRecipeRandom(tags)),
-//                HttpMethod.GET,
-//                null,
-//                RecipeRandom.class);
-//        log.info(": " + resp.getBody());
-//        return resp;
-//    }
-//
-//    private String searchRecipeRandom(String tag) {
-//        return "?number=1&tags=" + tag;
-//    }
-
-    public ResponseEntity<RecipeRandom> randomRecipe() {
+    public ResponseEntity<RecipeRandomResponse> randomRecipe() {
         log.info("Composed url: " + RANDOM_RECIPE_URL);
-        ResponseEntity<RecipeRandom> resp = restTemplate.exchange(
+        ResponseEntity<RecipeRandomResponse> resp = restTemplate.exchange(
                 recipeUrlCreator.createURLWithKey(RANDOM_RECIPE_URL),
                 HttpMethod.GET,
                 null,
-                RecipeRandom.class);
+                RecipeRandomResponse.class);
         log.info(": " + resp.getBody());
         return resp;
     }
@@ -98,7 +83,7 @@ public class SpoonacularServiceApiCalls {
     }
 
     private String recipeInformation(Long id) {
-        return "/" + id + "/information?includeNutrition=false";
+        return "/" + id + "/information?";
     }
 
 

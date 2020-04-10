@@ -1,19 +1,20 @@
-package com.fairit.recipe_browser.model.randomSearchRecipe;
+package com.fairit.recipe_browser.model.random.recipe;
 
 
-import com.fairit.recipe_browser.model.FavouriteRecipe;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class RecipeRandom extends FavouriteRecipe {
+public class RecipeRandom {
 
     private Boolean vegetarian;
     private Boolean vegan;
@@ -62,8 +63,8 @@ public class RecipeRandom extends FavouriteRecipe {
     @Transient
     private List<String> occasions;
 
-    @Transient
-    private List<WinePairing> winePairing;
+//    @Transient
+//    private List<WinePairing> winePairing;
 
     private String instructions;
 

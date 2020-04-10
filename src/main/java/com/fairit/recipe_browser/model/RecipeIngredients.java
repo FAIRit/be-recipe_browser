@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class RecipeIngredients {
+
     @Id
     private Long id;
 

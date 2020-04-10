@@ -1,7 +1,7 @@
 package com.fairit.recipe_browser.controller;
 
 import com.fairit.recipe_browser.model.*;
-import com.fairit.recipe_browser.model.randomSearchRecipe.RecipeRandom;
+import com.fairit.recipe_browser.model.random.recipe.RecipeRandom;
 import com.fairit.recipe_browser.model.recipeInformation.RecipeInformation;
 import com.fairit.recipe_browser.service.*;
 import lombok.AllArgsConstructor;
@@ -42,6 +42,8 @@ public class SearchController {
             //    model.addAttribute("recipes", searchResult.get(1).getId());
             model.addAttribute("title", searchResult.get(1).getTitle());
             model.addAttribute("usedIngredients", searchResult.get(1).getUsedIngredients());
+            model.addAttribute("missedIngredients", searchResult.get(1).getMissedIngredients());
+            model.addAttribute("unusedIngredients", searchResult.get(1).getUnusedIngredients());
             model.addAttribute("total", searchResult.size());
             model.addAttribute("image", searchResult.get(1).getImage());
         }
@@ -73,23 +75,20 @@ public class SearchController {
 
     @GetMapping(path = "/details/{recipeId}")
     public String recipesInformation(Model model,
-//                                     @RequestParam(name = "q", required = false) Long recipeId,
                                      @PathVariable Long recipeId) {
-        if (recipeId != null ) {
-            RecipeInformation recipeInformation = recipeInformationService.recipeInformationById(recipeId);
-            model.addAttribute("q", recipeId);
-            model.addAttribute("recipe", recipeInformation);
-        }
+        RecipeInformation recipeInformation = recipeInformationService.recipeInformationById(recipeId);
+        model.addAttribute("q", recipeId);
+        model.addAttribute("recipe", recipeInformation);
         return "recipe-details";
     }
 
 
 
-    @PostMapping("/addfavourite")
-    public String addfavourite(Recipe recipe) {
-        favouriteService.save(recipe);
-
-        return "redirect:/user/favourite-list";
-    }
+//    @PostMapping("/addfavourite")
+//    public String addfavourite(Recipe recipe) {
+//        favouriteService.save(recipe);
+//
+//        return "redirect:/user/favourite-list";
+//    }
 
 }

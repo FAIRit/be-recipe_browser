@@ -1,4 +1,4 @@
-package com.fairit.recipe_browser.model.randomSearchRecipe;
+package com.fairit.recipe_browser.model.random.recipe;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,16 +6,18 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class IngredientsForRandomRecipe {
+public class AnalyzedInstructions {
 
     @Id
-    private Long id;
     private String name;
-    private String image;
 
+    @Transient
+    private List<Step> steps;
 }

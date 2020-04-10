@@ -24,7 +24,7 @@ public class AppUser {
     @ManyToMany()
     private Set<UserRole> roles;
 
-    @ManyToMany()
-    private List<FavouriteRecipe> recipes;
+//    @ManyToMany()
+//    private List<FavouriteRecipe> recipes;
 
 }

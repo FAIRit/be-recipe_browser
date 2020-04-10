@@ -1,4 +1,4 @@
-package com.fairit.recipe_browser.model;
+package com.fairit.recipe_browser.model.random.recipe;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,11 +10,12 @@ import javax.persistence.Id;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@Entity
-public class FavouriteRecipe {
+@Entity
+public class IngredientsForRandomRecipe {
 
-//    @Id
+    @Id
     private Long id;
-    private String title;
+    private String name;
+    private String image;
 
 }

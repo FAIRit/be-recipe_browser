@@ -1,8 +1,8 @@
 package com.fairit.recipe_browser.model.recipeInformation;
 
-import com.fairit.recipe_browser.model.randomSearchRecipe.AnalyzedInstructions;
-import com.fairit.recipe_browser.model.randomSearchRecipe.ExtendedIngredient;
-import com.fairit.recipe_browser.model.randomSearchRecipe.WinePairing;
+import com.fairit.recipe_browser.model.random.recipe.AnalyzedInstructions;
+import com.fairit.recipe_browser.model.random.recipe.ExtendedIngredient;
+import com.fairit.recipe_browser.model.random.recipe.WinePairing;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -13,7 +13,6 @@ public class SearchRecipesService {
 
     public RecipeResults searchByRecipe(String recipe) {
         ResponseEntity<RecipeResults> searchRecipeResults = apiCalls.searchRecipe(recipe);
-
         return searchRecipeResults.getBody();
     }
 }

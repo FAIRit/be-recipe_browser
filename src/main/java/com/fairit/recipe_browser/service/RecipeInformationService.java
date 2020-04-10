@@ -13,7 +13,6 @@ public class RecipeInformationService {
 
     public RecipeInformation recipeInformationById(Long id) {
         ResponseEntity<RecipeInformation> recipeInformation = apiCalls.searchRecipeInformation(id);
-
         return recipeInformation.getBody();
     }
 }

@@ -11,24 +11,11 @@
     <div class="row col-md-12 bordered">
         <form class="row col-md-12" th:action="@{'/recipes/details/'+${q}/}" th:method="get" th:object="${q}">
             <div class="card shadow-sm p-1 bg-white rounded mb-3">
-                <div class="row colored-row">
-                    <div class="col-4" id="recipe"
-                         th:text="${recipe}"></div>
-                    <div class="col-4 font-weight-bold" id="cityName"
-                         th:text="${trip.getToAirport().getCity().getCityName()}"></div>
-                </div>
+                <div class="row colored-row" id="recipeTitle" th:text="${recipe.getTitle()}"></div>
+                <div class="row" id="instructions" th:text="${recipe.getInstructions()}"></div>
             </div>
-
         </form>
     </div>
-
-
-
-
-
-
-
-
 </div>
 </body>
 </html>

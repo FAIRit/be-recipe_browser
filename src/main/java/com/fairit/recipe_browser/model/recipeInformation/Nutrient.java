@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class Nutrient {
 
-//    private String title;
-//    private Double amount;
-//    private String unit;
-//    private Double percentOfDailyNeeds;
+    private String title;
+    private Double amount;
+    private String unit;
+    private Double percentOfDailyNeeds;
 }

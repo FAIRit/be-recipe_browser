@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class Metric {
 
-//    private Float amount;
-//    private String unitShort;
-//    private String unitLong;
+    private Float amount;
+    private String unitShort;
+    private String unitLong;
 }

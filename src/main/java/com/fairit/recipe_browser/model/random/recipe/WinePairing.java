@@ -1,4 +1,4 @@
-package com.fairit.recipe_browser.model.randomSearchRecipe;
+package com.fairit.recipe_browser.model.random.recipe;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,12 +14,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class AnalyzedInstructions {
-
-    @Id
-    private String name;
+public class WinePairing {
 
     @ElementCollection
-    @CollectionTable(name = "stepsAI")
-    private List<Step> steps;
+    @CollectionTable(name = "pairedWines")
+    public List<String> pairedWines ;
+
+    @Id
+    public String pairingText;
+
+    @ElementCollection
+    @CollectionTable(name = "productMatches")
+    public List<ProductMatch> productMatches;
 }

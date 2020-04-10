@@ -1,4 +1,4 @@
-package com.fairit.recipe_browser.model.randomSearchRecipe;
+package com.fairit.recipe_browser.model.random.recipe;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +28,7 @@ public class ExtendedIngredient {
     @ElementCollection
     @CollectionTable(name = "meta")
     private List<String> meta;
+
     @ElementCollection
     @CollectionTable(name = "metaInformation")
     private List<String> metaInformation;

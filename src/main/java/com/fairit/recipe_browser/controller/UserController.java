@@ -32,9 +32,9 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @GetMapping("/favourite-list")
-    public String getUserList(Model model) {
-        model.addAttribute("favouriteList", favouriteService.list());
-        return "favourite-list";
-    }
+//    @GetMapping("/favourite-list")
+//    public String getUserList(Model model) {
+//        model.addAttribute("favouriteList", favouriteService.list());
+//        return "favourite-list";
+//    }
 }
