@@ -24,22 +24,17 @@
     </div>
     <div th:if="${title != null}">Recipe list
         <div class="card shadow-sm p-1 bg-white rounded mb-3">
-            <!--       <div th:if="${recipes != null}" class="row col-md-12">-->
-            <div class="row col-md-12 list-header-row">
-                <div class="col-2">Title</div>
-                <div class="col-2">You have</div>
-                <div class="col-2">You need</div>
-                <div class="col-2">You won't use</div>
-                <div class="col-4"></div>
+            <div class="row col-md-12 m-table-header">
+                <div class="col-3">Title</div>
+                <div class="col-3">You have</div>
+                <div class="col-3">You need</div>
+                <div class="col-3">You won't use</div>
             </div>
             <div class="row col-md-12 list-header-row">
-                <div class="col-2" th:text="${title}"></div>
-                <div class="col-2" th:text="${usedIngredients}"></div>
-                <div class="col-2" th:text="${missedIngredients}"></div>
-                <div class="col-2" th:text="${unusedIngredients}"></div>
-                <div class="col-4">
-                    <img th:href="${image}">
-                </div>
+                <div class="col-3" th:text="${title}"></div>
+                <div class="col-3" th:text="${usedIngredients}"></div>
+                <div class="col-3" th:text="${missedIngredients}"></div>
+                <div class="col-3" th:text="${unusedIngredients}"></div>
             </div>
             <div class="row col-md-12 info-row">
                 <div class="col-3">Total results:</div>

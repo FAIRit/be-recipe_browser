@@ -40,6 +40,7 @@ public class SearchController {
             List<RecipesWithDefinedIngredients> searchResult = searchRecipesByIngredientsService.searchRecipe(ingredients);
             model.addAttribute("q", phrase);
             //    model.addAttribute("recipes", searchResult.get(1).getId());
+//            model.addAttribute(searchResult);
             model.addAttribute("title", searchResult.get(1).getTitle());
             model.addAttribute("usedIngredients", searchResult.get(1).getUsedIngredients());
             model.addAttribute("missedIngredients", searchResult.get(1).getMissedIngredients());
