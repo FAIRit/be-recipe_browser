@@ -5,7 +5,27 @@ body {
 .m-table-header {
     background-color: #ffffff !important;
     font-weight: bold;
+    font-size: 18px;
     margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 7px !important;
+}
+
+.m-table-row:nth-child(odd) {
+    background-color: rgba(005, 162, 248, 0.60);
+    font-size: 17px;
+
+}
+
+.m-table-row:nth-child(even) {
+    background-color: rgba(243, 241, 242, 0.60);
+    font-size: 17px;
+}
+
+.m-table-row:nth-child(odd):hover {
+    background-color: rgba(000, 142, 228, 0.60);
+}
+
+.m-table-row:nth-child(even):hover {
+    background-color: rgba(223, 221, 222, 0.60);
 }
