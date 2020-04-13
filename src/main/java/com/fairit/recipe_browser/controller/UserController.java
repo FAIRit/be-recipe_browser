@@ -1,6 +1,5 @@
 package com.fairit.recipe_browser.controller;
 
-import com.fairit.recipe_browser.model.AppUser;
 import com.fairit.recipe_browser.service.FavoriteRecipesService;
 import com.fairit.recipe_browser.service.User.UserService;
 import lombok.AllArgsConstructor;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
-import java.util.Optional;
 
 @Controller
 @AllArgsConstructor
@@ -37,26 +35,26 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @GetMapping("/addfavorite")
-    public String addfavorite(@RequestParam(name = "recipeId") Long recipeId,
-                              @RequestParam(name = "title") String title) {
-        favoriteRecipesService.save(title, recipeId);
-        return "redirect:/user/favorite-list";
-    }
-
-    @GetMapping("/favorite-list")
-    public String getUserList(Principal principal, Model model) {
+    @GetMapping("/add-favorite")
+    public String addFavorite(@RequestParam(name = "recipeId") Long recipeId,
+                              @RequestParam(name = "title") String title,
+                              Principal principal) {
         String username = principal.getName();
         if (username == null) {
             return "redirect:/login";
         }
-        Optional<AppUser> appUserOptional = userService.findUserByUsername(username);
-        if (appUserOptional.isPresent()) {
-            AppUser appUser = appUserOptional.get();
-            appUser.setRecipes(favoriteRecipesService.list());
+        favoriteRecipesService.save(title, recipeId, username);
+        return "redirect:/user/favorite-list";
+    }
+
+    @GetMapping("/favorite-list")
+    public String getUserFavoriteRecipeList(Principal principal, Model model) {
+        String username = principal.getName();
+        if (username == null) {
+            return "redirect:/login";
         }
         model.addAttribute("userName", username);
-        model.addAttribute("favoriteList", favoriteRecipesService.list());
+        model.addAttribute("favoriteList", favoriteRecipesService.list(username));
         return "favorite-list";
     }
 }
