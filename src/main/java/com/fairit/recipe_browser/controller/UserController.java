@@ -1,10 +1,9 @@
 package com.fairit.recipe_browser.controller;
 
-import com.fairit.recipe_browser.model.FavouriteRecipe;
-import com.fairit.recipe_browser.model.Recipe;
-import com.fairit.recipe_browser.service.FavouriteRecipeService;
+import com.fairit.recipe_browser.model.AppUser;
+import com.fairit.recipe_browser.service.FavoriteRecipesService;
 import com.fairit.recipe_browser.service.User.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,16 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.util.Optional;
 
 @Controller
+@AllArgsConstructor
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
 
-    @Autowired
-    private FavouriteRecipeService favouriteRecipeService;
+    private final UserService userService;
+    private final FavoriteRecipesService favoriteRecipesService;
 
     @GetMapping("/register")
     public String getRegisterForm() {
@@ -38,19 +37,26 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @GetMapping("/addfavourite")
-    public String addfavourite(@RequestParam(name = "recipeId") Long recipeId) {
-        favouriteRecipeService.save(recipeId);
-        return "redirect:/user/favourite-list";
+    @GetMapping("/addfavorite")
+    public String addfavorite(@RequestParam(name = "recipeId") Long recipeId,
+                              @RequestParam(name = "title") String title) {
+        favoriteRecipesService.save(title, recipeId);
+        return "redirect:/user/favorite-list";
     }
 
-    @GetMapping("/favourite-list")
+    @GetMapping("/favorite-list")
     public String getUserList(Principal principal, Model model) {
         String username = principal.getName();
-        model.addAttribute("favouriteList", favouriteRecipeService);
-        return "favourite-list";
+        if (username == null) {
+            return "redirect:/login";
+        }
+        Optional<AppUser> appUserOptional = userService.findUserByUsername(username);
+        if (appUserOptional.isPresent()) {
+            AppUser appUser = appUserOptional.get();
+            appUser.setRecipes(favoriteRecipesService.list());
+        }
+        model.addAttribute("userName", username);
+        model.addAttribute("favoriteList", favoriteRecipesService.list());
+        return "favorite-list";
     }
-
-
-
 }

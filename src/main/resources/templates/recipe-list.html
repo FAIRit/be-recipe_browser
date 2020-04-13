@@ -42,8 +42,9 @@
                         <a th:href="@{'/recipes/details/'+${recipe.getId()}}">Details</a>
                     </div>
                     <div class="col-2" >
-                        <a sec:authorize="hasRole('USER')" th:href="@{/user/addfavourite(recipeId=${recipe.getId()})}">
-                            <button class="form-control btn btn-primary" type="submit">Add to favourites</button>
+                        <a sec:authorize="hasRole('USER')"
+                           th:href="@{/user/addfavorite(title=${recipe.getTitle()}, recipeId=${recipe.getId()})}">
+                            <button class="form-control btn btn-primary" type="submit">Add to favorites</button>
                         </a>
                     </div>
                 </div>

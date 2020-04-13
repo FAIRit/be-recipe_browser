@@ -12,7 +12,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class FavouriteRecipe {
+public class FavoriteRecipes {
 
     @Id
     @GeneratedValue
@@ -20,7 +20,8 @@ public class FavouriteRecipe {
     private String title;
     private Long serviceId;
 
-    public FavouriteRecipe(Long serviceId) {
+    public FavoriteRecipes(String title, Long serviceId) {
+        this.title = title;
         this.serviceId = serviceId;
     }
 }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:include="templates :: headers"></th:block>
+    <title>Recipe browser</title>
+</head>
+<body>
+<th:block th:include="templates :: navigator_bar"></th:block>
+<div class="content-container">
+    <form class="row col-md-12" th:action="@{/user/favorite-list/}" th:method="get">
+        <div class="row col-md-12 bordered">
+            <div class="col-4" th:text="'Your list of favorite recipes'">
+                <div class="row col-md-12 bordered" th:text="${userName}"></div>
+                <div class="card shadow-sm p-1 bg-white rounded mb-3">
+                    <div th:if="${favoriteList != null}" class="row col-md-12">
+                        <div class="row col-md-12 list-header-row">
+                            <div class="col-3" th:text="'Number'"></div>
+                            <div class="col-3" th:text="'Title'"></div>
+                            <div class="col-1" th:text="'Details'"></div>
+                        </div>
+                        <div class="row col-md-12 list-data-row" th:each="favorite : ${favoriteList}">
+                            <div class="col-3" th:text="${favorite.id}"></div>
+                            <div class="col-3" th:text="${favorite.getTitle()}"></div>
+                            <div class="col-1">
+                                <a th:href="@{'/recipes/details/'+${favorite.getServiceId()}}">Details</a>
+                            </div>
+                        </div>
+                        <div class="row col-md-12 info-row">
+                            <div class="col-3">Total results:</div>
+                            <div class="col-3" th:text="${favoriteList.size()}"></div>
+                        </div>
+                    </div>
+                </div>
+                <div th:if="${favoriteList.size()==0}">
+                    <div class="text-center" th:text="'Sorry, no records found'"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -25,6 +25,6 @@ public class AppUser {
     private Set<UserRole> roles;
 
     @OneToMany()
-    private List<FavouriteRecipe> recipes;
+    private List<FavoriteRecipes> recipes;
 
 }

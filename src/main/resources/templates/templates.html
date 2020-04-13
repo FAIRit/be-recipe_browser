@@ -16,7 +16,7 @@
         <nav class="my-2 my-md-0 mr-md-3">
 
             <a class="p-2 text-dark" th:href="@{/}">Home</a>
-            <a class="p-2 text-dark" sec:authorize="hasRole('USER')" th:href="@{/user/favourite-list}">My favorite recipes</a>
+            <a class="p-2 text-dark" sec:authorize="hasRole('USER')" th:href="@{/user/favorite-list}">My favorite recipes</a>
 
             <a class="btn btn-outline-primary align-self-end" sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a>
             <a class="btn btn-outline-primary " sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
