@@ -1,6 +1,8 @@
 package com.fairit.recipe_browser.controller;
 
-import com.fairit.recipe_browser.service.FavouriteService;
+import com.fairit.recipe_browser.model.FavouriteRecipe;
+import com.fairit.recipe_browser.model.Recipe;
+import com.fairit.recipe_browser.service.FavouriteRecipeService;
 import com.fairit.recipe_browser.service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,13 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
-    private FavouriteService favouriteService;
+    private FavouriteRecipeService favouriteRecipeService;
 
     @GetMapping("/register")
     public String getRegisterForm() {
@@ -32,9 +36,19 @@ public class UserController {
         return "redirect:/login";
     }
 
-//    @GetMapping("/favourite-list")
-//    public String getUserList(Model model) {
-//        model.addAttribute("favouriteList", favouriteService.list());
-//        return "favourite-list";
-//    }
+    @PostMapping("/addfavourite")
+    public String addfavourite(Long recipeId) {
+        favouriteRecipeService.save(recipeId);
+        return "redirect:/user/favourite-list";
+    }
+
+    @GetMapping("/favourite-list")
+    public String getUserList(Principal principal, Model model) {
+        String username = principal.getName();
+        model.addAttribute("favouriteList", favouriteRecipeService);
+        return "favourite-list";
+    }
+
+
+
 }

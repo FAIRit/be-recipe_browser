@@ -18,7 +18,6 @@ public class SearchController {
     private final SearchRecipesService searchRecipesService;
     private final SearchRecipesByIngredientsService searchRecipesByIngredientsService;
     private final RandomRecipeService randomRecipeService;
-    private final FavouriteService favouriteService;
     private final RecipeInformationService recipeInformationService;
 
     @GetMapping(path = "/search/")
@@ -48,8 +47,9 @@ public class SearchController {
     @GetMapping(path = "/random/")
     public String findRandomRecipe(Model model) {
         RecipeRandom random = randomRecipeService.searchRandomRecipe();
-        model.addAttribute("title", random.getTitle());
-        model.addAttribute("description", random.getSummary());
+        model.addAttribute("recipe", random);
+//        model.addAttribute("title", random.getTitle());
+        model.addAttribute("instructions", random.getInstructions());
         return "random-recipe";
     }
 
@@ -61,14 +61,4 @@ public class SearchController {
         model.addAttribute("recipe", recipeInformation);
         return "recipe-details";
     }
-
-
-
-//    @PostMapping("/addfavourite")
-//    public String addfavourite(Recipe recipe) {
-//        favouriteService.save(recipe);
-//
-//        return "redirect:/user/favourite-list";
-//    }
-
 }

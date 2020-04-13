@@ -20,4 +20,7 @@ public class FavouriteRecipe {
     private String title;
     private Long serviceId;
 
+    public FavouriteRecipe(Long serviceId) {
+        this.serviceId = serviceId;
+    }
 }
