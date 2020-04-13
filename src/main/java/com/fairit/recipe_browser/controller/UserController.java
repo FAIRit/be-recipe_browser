@@ -20,6 +20,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
     private FavouriteRecipeService favouriteRecipeService;
 
     @GetMapping("/register")
@@ -36,8 +38,8 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @PostMapping("/addfavourite")
-    public String addfavourite(Long recipeId) {
+    @GetMapping("/addfavourite")
+    public String addfavourite(@RequestParam(name = "recipeId") Long recipeId) {
         favouriteRecipeService.save(recipeId);
         return "redirect:/user/favourite-list";
     }

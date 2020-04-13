@@ -24,7 +24,10 @@
             </div>
             <div class="row m-table-element p-1 mb-3">
                 <div class="col-2" th:text="'Ingredients'"></div>
-                <div class="col-10" th:each="ingredient : ${recipe.getExtendedIngredients()}" th:text="${ingredient.getName()}"></div>
+                <div class="col-10">
+                    <div th:each="ingredient : ${recipe.getExtendedIngredients()}"
+                         th:text="${ingredient.getName()}"></div>
+                </div>
             </div>
         </div>
     </div>
