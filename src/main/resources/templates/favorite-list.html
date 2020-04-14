@@ -7,43 +7,48 @@
 </head>
 <body>
 <th:block th:include="templates :: navigator_bar"></th:block>
-<div class="content-container">
-    <form class="row col-md-12" th:action="@{/user/favorite-list/}" th:method="get">
-        <div class="row col-md-12 bordered">
-            <div class="row col-md-12 ">
-                <div class="col-1" th:text="'Login:'"></div>
-                <div class="col-3" th:text="${userName}"></div>
-            </div>
-            <div class="row col-md-12 ">
-                <div class="col-6" th:text="'Your list of favorite recipes:'"></div>
-            </div>
+<div class="container main-window">
+    <div class="row col-md-12 bordered">
+        <div class="row col-md-12">
+            <div class="col-1" th:text="'Login:'"></div>
+            <div class="col-3" th:text="${userName}"></div>
+        </div>
+        <div class="row col-md-12 ">
+            <div class="col-6 font-weight-bold" th:text="'Your list of favorite recipes:'"></div>
+        </div>
 
-            <div class="card shadow-sm p-1 bg-white rounded mb-3">
-                <div th:if="${favoriteList != null}" class="row col-md-12">
-                    <div class="row col-md-12 m-table-header">
+        <div class="card shadow-sm p-1 bg-white rounded mb-3">
+            <div class="list-group list-group-flush">
+                <div th:if="${favoriteList != null}" class="row no-margin col-md-12">
+                    <div class="row col-md-12 m-table-header mb-3">
                         <div class="col-8" th:text="'Title'"></div>
                         <div class="col-2"></div>
                         <div class="col-2"></div>
                     </div>
-                    <div class="row col-md-12 m-table-row" th:each="favorite : ${favoriteList}">
+                    <div class="row col-md-12 m-table-row mb-2" th:each="favorite : ${favoriteList}">
                         <div class="col-8" th:text="${favorite.getTitle()}"></div>
                         <div class="col-2">
                             <a th:href="@{'/recipes/details/'+${favorite.getServiceId()}}">
-                                <button class="form-control" type="submit">Details</button>
+                                <button class="form-control btn btn-primary" type="submit">Details</button>
+                            </a>
+                        </div>
+                        <div class="col-2">
+                            <a th:href="@{'/user/delete/'+${favorite.getId()}}">
+                                <button class="form-control btn btn-primary" type="submit">Delete</button>
                             </a>
                         </div>
                     </div>
-                    <div class="row col-md-6 info-row">
-                        <div class="col-5">Total results:</div>
-                        <div class="col-1" th:text="${favoriteList.size()}"></div>
+                    <div class="row col-md-12 info-row">
+                        <div class="col-6">Total results:</div>
+                        <div class="col-" th:text="${favoriteList.size()}"></div>
                     </div>
                 </div>
             </div>
-            <div th:if="${favoriteList.size()==0}">
-                <div class="text-center" th:text="'Sorry, no records found'"></div>
-            </div>
         </div>
-    </form>
+        <div th:if="${favoriteList.size()==0}">
+            <div class="text-center" th:text="'Sorry, no records found'"></div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

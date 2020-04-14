@@ -55,4 +55,15 @@ public class UserController {
         return "favorite-list";
     }
 
+    @GetMapping("/delete/{recipeId}")
+    public String delete(@PathVariable("recipeId") Long recipeId,
+                         Principal principal) {
+        String username = principal.getName();
+        if (username == null) {
+            return "redirect:/login";
+        }
+        favoriteRecipesService.delete(recipeId, username);
+        return "redirect:/user/favorite-list";
+    }
+
 }

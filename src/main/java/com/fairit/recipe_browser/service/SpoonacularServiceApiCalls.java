@@ -40,7 +40,7 @@ public class SpoonacularServiceApiCalls {
     }
 
     private String recipeSearch(String recipe) {
-        return "?query=" + recipe + "&number=5";
+        return "?query=" + recipe + "&number=10";
     }
 
     public ResponseEntity<List<RecipesWithDefinedIngredients>> searchRecipeWithIngredients(Ingredients ingredients) {

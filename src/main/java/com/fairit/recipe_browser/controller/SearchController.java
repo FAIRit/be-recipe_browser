@@ -48,7 +48,6 @@ public class SearchController {
     public String findRandomRecipe(Model model) {
         RecipeRandom random = randomRecipeService.searchRandomRecipe();
         model.addAttribute("recipe", random);
-//        model.addAttribute("title", random.getTitle());
         model.addAttribute("instructions", random.getInstructions());
         return "random-recipe";
     }

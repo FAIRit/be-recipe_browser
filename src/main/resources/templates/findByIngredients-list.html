@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <th:block th:include="templates :: headers"></th:block>
@@ -11,8 +11,7 @@
     <h2>Recipe search</h2>
     <div class="row col-md-12 bordered">
         <form class="row col-md-12" th:action="@{/recipes/findByIngredients/}" th:method="get">
-            <div class="offset-2 col-2">
-                <h5>Write what you have in the fridge, e.g. eggs, flour, butter</h5>
+            <div class="offset-2 col-2" th:text="'Write what you have in the fridge, e.g. eggs, flour, butter'">
             </div>
             <div class="col-2">
                 <input class="form-control" type="text" name="q">
@@ -27,14 +26,15 @@
             <div class="list-group list-group-flush">
             <div class="row col-12 m-table-header">
                 <div class="col-3" th:text="'Title'"></div>
-                <div class="col-3" th:text="'You have'"></div>
+                <div class="col-2" th:text="'You have'"></div>
                 <div class="col-3" th:text="'You need'"></div>
                 <div class="col-2" th:text="'You won\'t use'"></div>
                 <div class="col-1"></div>
+                <div class="col-1"></div>
             </div>
-            <div class="row col-12 m-table-row" th:each="recipe : ${searchResults}">
+            <div class="row col-12 m-table-row mb-2" th:each="recipe : ${searchResults}">
                 <div class="col-3" th:text="${recipe.getTitle()}"></div>
-                <div class="col-3">
+                <div class="col-2">
                     <div class="row col-md-12">
                         <div class="col-6" th:each="ingredient : ${recipe.getUsedIngredients()}"
                              th:text="${ingredient.getName()}">
@@ -56,7 +56,15 @@
                     </div>
                 </div>
                 <div class="col-1" >
-                    <a th:href="@{'/recipes/details/'+${recipe.getId()}}">Details</a>
+                    <a th:href="@{'/recipes/details/'+${recipe.getId()}}">
+                    <button class="form-control btn btn-primary" type="submit">Details</button>
+                    </a>
+                </div>
+                <div class="col-1" >
+                    <a sec:authorize="hasRole('USER')"
+                       th:href="@{/user/add-favorite(title=${recipe.getTitle()}, recipeId=${recipe.getId()})}">
+                        <button class="form-control btn btn-primary" type="submit">Add to fav</button>
+                    </a>
                 </div>
             </div>
             <div class="row col-md-12 info-row">

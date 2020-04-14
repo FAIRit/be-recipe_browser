@@ -24,35 +24,38 @@
     </div>
     <div th:if="${recipes != null}">
         <h2>Recipe list</h2>
-        <div class="card shadow-sm p-1 bg-white rounded mb-3">
-            <div th:if="${recipes != null}" class="row col-md-12">
-                <div class="row col-md-12 m-table-header">
-                    <div class="col-4" th:text="'Title'"></div>
-                    <div class="col-2" th:text="'Ready in minutes'"></div>
-                    <div class="col-2" th:text="'Servings'"></div>
-                    <div><!--Buttons--></div>
-                    <div><!--Buttons--></div>
+        <div class="row col-md-12 bordered">
+            <div class="card shadow-sm p-1 bg-white rounded mb-3">
+                <div th:if="${recipes != null}" class="row col-md-12">
+                    <div class="row col-md-12 no-margin m-table-header">
+                        <div class="col-4 offset-1" th:text="'Title'"></div>
+                        <div class="col-2" th:text="'Ready in minutes'"></div>
+                        <div class="col-2" th:text="'Servings'"></div>
+                        <div class="col-1"><!--Buttons--></div>
+                        <div class="col-2"><!--Buttons--></div>
 
-                </div>
-                <div th:each="recipe : ${recipes.getResults()}" class="row col-md-12 list-data-row">
-                    <div class="col-4" th:text="${recipe.getTitle().toString()}"></div>
-                    <div class="col-2" th:text="${recipe.getReadyInMinutes().toString()}"></div>
-                    <div class="col-2" th:text="${recipe.getServings().toString()}"></div>
-                    <div class="col-1">
-                        <a th:href="@{'/recipes/details/'+${recipe.getId()}}">
-                            <button class="form-control" type="submit">Details</button>
-                        </a>
                     </div>
-                    <div class="col-2" >
-                        <a sec:authorize="hasRole('USER')"
-                           th:href="@{/user/add-favorite(title=${recipe.getTitle()}, recipeId=${recipe.getId()})}">
-                            <button class="form-control" type="submit">Add to favorites</button>
-                        </a>
+                    <div th:each="recipe : ${recipes.getResults()}"
+                         class="row col-md-12 m-table-row mb-2 list-data-row">
+                        <div class="col-4 offset-1" th:text="${recipe.getTitle().toString()}"></div>
+                        <div class="col-2" th:text="${recipe.getReadyInMinutes().toString()}"></div>
+                        <div class="col-2" th:text="${recipe.getServings().toString()}"></div>
+                        <div class="col-1">
+                            <a th:href="@{'/recipes/details/'+${recipe.getId()}}">
+                                <button class="form-control btn btn-primary" type="submit">Details</button>
+                            </a>
+                        </div>
+                        <div class="col-2">
+                            <a sec:authorize="hasRole('USER')"
+                               th:href="@{/user/add-favorite(title=${recipe.getTitle()}, recipeId=${recipe.getId()})}">
+                                <button class="form-control btn btn-primary" type="submit">Add to favfavorites</button>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="row col-md-12 info-row">
-                    <div class="col-3">Total results:</div>
-                    <div class="col-3" th:text="${recipes.getTotalResults()}"></div>
+                    <div class="row col-md-12 info-row">
+                        <div class="col-3">Total results:</div>
+                        <div class="col-3" th:text="${recipes.getTotalResults()}"></div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -36,4 +36,19 @@ public class FavoriteRecipesService {
         }
         throw new RuntimeException("User is not logged in");
     }
+
+    public void delete(Long recipeId, String username) {
+        Optional<AppUser> appUser = appUserRepository.findByEmail(username);
+        if (appUser.isPresent()) {
+            AppUser user = appUser.get();
+            for (FavoriteRecipes recipes : user.getRecipes()) {
+                if (recipes.getId() == recipeId) {
+                    user.getRecipes().remove(recipes);
+                    appUserRepository.save(user);
+                    favoriteRecipesRepository.delete(recipes);
+                    break;
+                }
+            }
+        }
+    }
 }
