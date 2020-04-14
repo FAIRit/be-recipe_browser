@@ -1,4 +1,4 @@
-package com.fairit.recipe_browser.service;
+package com.fairit.recipe_browser.service.User;
 
 import com.fairit.recipe_browser.model.UserRole;
 

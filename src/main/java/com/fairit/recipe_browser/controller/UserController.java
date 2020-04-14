@@ -1,19 +1,22 @@
 package com.fairit.recipe_browser.controller;
 
-import com.fairit.recipe_browser.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.fairit.recipe_browser.service.FavoriteRecipesService;
+import com.fairit.recipe_browser.service.User.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @Controller
+@AllArgsConstructor
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+
+    private final UserService userService;
+    private final FavoriteRecipesService favoriteRecipesService;
 
     @GetMapping("/register")
     public String getRegisterForm() {
@@ -28,4 +31,28 @@ public class UserController {
 
         return "redirect:/login";
     }
+
+    @GetMapping("/add-favorite")
+    public String addFavorite(@RequestParam(name = "recipeId") Long recipeId,
+                              @RequestParam(name = "title") String title,
+                              Principal principal) {
+        String username = principal.getName();
+        if (username == null) {
+            return "redirect:/login";
+        }
+        favoriteRecipesService.save(title, recipeId, username);
+        return "redirect:/user/favorite-list";
+    }
+
+    @GetMapping("/favorite-list")
+    public String getUserFavoriteRecipeList(Principal principal, Model model) {
+        String username = principal.getName();
+        if (username == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("userName", username);
+        model.addAttribute("favoriteList", favoriteRecipesService.list(username));
+        return "favorite-list";
+    }
+
 }

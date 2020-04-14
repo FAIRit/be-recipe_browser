@@ -7,7 +7,34 @@
 </head>
 <body>
 <th:block th:include="templates :: navigator_bar"></th:block>
-<h2>Recipe browser</h2>
+<div class="container main-window">
+    <div class="row colored-row">
+        <div class="col-12">
+            <h2>Recipe browser</h2>
+        </div>
+    </div>
+    <div class="card shadow-sm p-1 bg-white rounded mb-3">
+        <div class="list-group list-group-flush">
+            <div class="row m-table-element p-1 mb-3">
+                <a class="col-8" th:href="@{'/recipes/search/'}">Here you can find your recipe</a>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow-sm p-1 bg-white rounded mb-3">
+        <div class="list-group list-group-flush">
+            <div class="row m-table-element p-1 mb-3">
+                <a class="col-8" th:href="@{'/recipes/findByIngredients/'}">Here you can find what can you cook with stuff from your fridge</a>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow-sm p-1 bg-white rounded mb-3">
+        <div class="list-group list-group-flush">
+            <div class="row m-table-element p-1 mb-3">
+                <a class="col-8" th:href="@{'/recipes/random/'}">Here you can find random recipe for you</a>
+            </div>
+        </div>
+    </div>
+</div>
 <th:block th:include="templates :: footer_scripts"></th:block>
 </body>
 </html>

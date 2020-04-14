@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:include="templates :: headers"></th:block>
+    <title>Recipe browser</title>
+</head>
+<body>
+<th:block th:include="templates :: navigator_bar"></th:block>
+<div class="content-container">
+    <h2>Recipe search</h2>
+    <div class="row col-md-12 bordered">
+        <form class="row col-md-12" th:action="@{/recipes/findByIngredients/}" th:method="get">
+            <div class="offset-2 col-2">
+                <h5>Write what you have in the fridge, e.g. eggs, flour, butter</h5>
+            </div>
+            <div class="col-2">
+                <input class="form-control" type="text" name="q">
+            </div>
+            <div class="col-2">
+                <button class="form-control btn btn-primary" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+    <div th:if="${total != null}">
+        <div class="card shadow-sm p-1 bg-white rounded mb-3">
+            <div class="list-group list-group-flush">
+            <div class="row col-12 m-table-header">
+                <div class="col-3" th:text="'Title'"></div>
+                <div class="col-3" th:text="'You have'"></div>
+                <div class="col-3" th:text="'You need'"></div>
+                <div class="col-2" th:text="'You won\'t use'"></div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row col-12 m-table-row" th:each="recipe : ${searchResults}">
+                <div class="col-3" th:text="${recipe.getTitle()}"></div>
+                <div class="col-3">
+                    <div class="row col-md-12">
+                        <div class="col-6" th:each="ingredient : ${recipe.getUsedIngredients()}"
+                             th:text="${ingredient.getName()}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="row col-md-12">
+                        <div class="col-6" th:each="ingredient : ${recipe.getMissedIngredients()}"
+                             th:text="${ingredient.getName()}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="row col-md-12">
+                        <div class="col-6" th:each="ingredient : ${recipe.getUnusedIngredients()}"
+                             th:text="${ingredient.getName()}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1" >
+                    <a th:href="@{'/recipes/details/'+${recipe.getId()}}">Details</a>
+                </div>
+            </div>
+            <div class="row col-md-12 info-row">
+                <div class="col-3">Total results:</div>
+                <div class="col-3" th:text="${total}"></div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

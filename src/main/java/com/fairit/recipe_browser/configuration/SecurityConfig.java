@@ -1,6 +1,6 @@
 package com.fairit.recipe_browser.configuration;
 
-import com.fairit.recipe_browser.service.LoginService;
+import com.fairit.recipe_browser.service.User.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/",
                         "/user/register",
                         "/login").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN") /* Na potem, wszystko co w /admin/ musi mieć rolę admina*/
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public DaoAuthenticationProvider getDaoAuthenticationProvider(){
+    public DaoAuthenticationProvider getDaoAuthenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
 
         daoAuthenticationProvider.setUserDetailsService(loginService);
