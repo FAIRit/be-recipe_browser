@@ -32,7 +32,6 @@ public class FavoriteRecipesService {
         Optional<AppUser> appUser = appUserRepository.findByEmail(username);
         if (appUser.isPresent()) {
             AppUser user = appUser.get();
-
             return user.getRecipes();
         }
         throw new RuntimeException("User is not logged in");

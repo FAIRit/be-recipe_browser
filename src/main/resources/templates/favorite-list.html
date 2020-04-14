@@ -22,13 +22,15 @@
                 <div th:if="${favoriteList != null}" class="row col-md-12">
                     <div class="row col-md-12 m-table-header">
                         <div class="col-8" th:text="'Title'"></div>
-                        <div class="col-2" ></div>
-                        <div class="col-2" ></div>
+                        <div class="col-2"></div>
+                        <div class="col-2"></div>
                     </div>
                     <div class="row col-md-12 m-table-row" th:each="favorite : ${favoriteList}">
                         <div class="col-8" th:text="${favorite.getTitle()}"></div>
                         <div class="col-2">
-                            <a th:href="@{'/recipes/details/'+${favorite.getServiceId()}}">Details</a>
+                            <a th:href="@{'/recipes/details/'+${favorite.getServiceId()}}">
+                                <button class="form-control" type="submit">Details</button>
+                            </a>
                         </div>
                     </div>
                     <div class="row col-md-6 info-row">
@@ -40,7 +42,6 @@
             <div th:if="${favoriteList.size()==0}">
                 <div class="text-center" th:text="'Sorry, no records found'"></div>
             </div>
-
         </div>
     </form>
 </div>

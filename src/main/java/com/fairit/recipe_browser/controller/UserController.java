@@ -5,10 +5,7 @@ import com.fairit.recipe_browser.service.User.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -57,4 +54,5 @@ public class UserController {
         model.addAttribute("favoriteList", favoriteRecipesService.list(username));
         return "favorite-list";
     }
+
 }
