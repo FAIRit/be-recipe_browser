@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
@@ -22,10 +23,6 @@ public class Ingredients {
     private List<String> ingred = new ArrayList<>();
 
     public String compose() {
-        StringBuilder builder = new StringBuilder();
-        for (String s : ingred) {
-            builder.append(s).append(",+");
-        }
-        return builder.toString().substring(0, builder.length() - 2);
+        return ingred.stream().collect(Collectors.joining(",+"));
     }
 }

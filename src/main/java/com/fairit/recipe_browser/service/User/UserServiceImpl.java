@@ -3,8 +3,6 @@ package com.fairit.recipe_browser.service.User;
 import com.fairit.recipe_browser.exception.PasswordDoNotMatchException;
 import com.fairit.recipe_browser.model.AppUser;
 import com.fairit.recipe_browser.repository.AppUserRepository;
-import com.fairit.recipe_browser.service.User.UserRoleService;
-import com.fairit.recipe_browser.service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

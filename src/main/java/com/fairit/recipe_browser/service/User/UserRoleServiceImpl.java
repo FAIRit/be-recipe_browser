@@ -2,7 +2,6 @@ package com.fairit.recipe_browser.service.User;
 
 import com.fairit.recipe_browser.model.UserRole;
 import com.fairit.recipe_browser.repository.UserRoleRepository;
-import com.fairit.recipe_browser.service.User.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

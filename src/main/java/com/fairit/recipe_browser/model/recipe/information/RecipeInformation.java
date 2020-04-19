@@ -3,16 +3,11 @@ package com.fairit.recipe_browser.model.recipe.information;
 import com.fairit.recipe_browser.model.random.recipe.AnalyzedInstructions;
 import com.fairit.recipe_browser.model.random.recipe.ExtendedIngredient;
 import com.fairit.recipe_browser.model.random.recipe.WinePairing;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class RecipeInformation {
 
     private Boolean vegetarian;

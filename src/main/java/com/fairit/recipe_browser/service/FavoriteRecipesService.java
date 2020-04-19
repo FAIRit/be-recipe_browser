@@ -29,26 +29,20 @@ public class FavoriteRecipesService {
     }
 
     public List<FavoriteRecipes> list(String username) {
-        Optional<AppUser> appUser = appUserRepository.findByEmail(username);
-        if (appUser.isPresent()) {
-            AppUser user = appUser.get();
-            return user.getRecipes();
-        }
-        throw new RuntimeException("User is not logged in");
+        return appUserRepository.findByEmail(username)
+                .map(AppUser::getRecipes)
+                .orElseThrow(() -> new RuntimeException("User is not logged in"));
     }
 
     public void delete(Long recipeId, String username) {
-        Optional<AppUser> appUser = appUserRepository.findByEmail(username);
-        if (appUser.isPresent()) {
-            AppUser user = appUser.get();
-            for (FavoriteRecipes recipes : user.getRecipes()) {
-                if (recipes.getId() == recipeId) {
+        appUserRepository.findByEmail(username).ifPresent(user -> user.getRecipes().stream()
+                .filter(recipes -> recipes.getId().longValue() == recipeId.longValue())
+                .findFirst()
+                .ifPresent(recipes -> {
                     user.getRecipes().remove(recipes);
                     appUserRepository.save(user);
                     favoriteRecipesRepository.delete(recipes);
-                    break;
-                }
-            }
-        }
+                })
+        );
     }
 }
